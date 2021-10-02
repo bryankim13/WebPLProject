@@ -6,3 +6,7 @@ body{
     height:17vh;
     background-color:rgb(249, 223, 223);
 }
+.carousel-item{
+    height:35rem;
+    background : #777;
+}
