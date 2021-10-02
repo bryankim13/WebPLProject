@@ -30,7 +30,7 @@
             </nav> 
         </header>
         
-        <!-- use of a jumbotron for our main header for our home page to grab the user's attention -->
+        <!-- use of a jumbotron for our to describe the content of the gallery -->
         <div class=" jumbo rounded-3 mx-auto m-3 jumbotron jumbotron-fluid border">
             <div class="container">
               <h1 class="display-4 text-center">The Gallery</h1>
@@ -39,6 +39,7 @@
             </div>
         </div>
 
+        <!-- used a row to list out the pictures and to flow nicely on the screen -->
         <div class="container">
             <div class="row" id="gallery" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -66,6 +67,12 @@
                     <img class="w-100 rounded-3" src="images/eway.jpeg" data-bs-target="#carouselExample" data-bs-slide-to="7">
                 </div>
             </div> 
+
+            <!-- Modal from bootstrap to use as a popup for users to interact with. 
+                Provides better view for what people have taken and uploaded.
+                As of right now, we did not incorporate a database, so we manually added the
+                pictures. 
+            -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">

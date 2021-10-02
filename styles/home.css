@@ -6,13 +6,13 @@ body{
 .homeImage{
     background-image: url("../images/paul.jpeg");
     background-size: cover;
-    min-height:40vh;
-    max-height:60vh;
+    background-repeat:no-repeat;
+    height:60vh;
     width:80vw;
     color:white;
     font-size:xx-large;
 }
 .jumbo{
     width:80vw;
-    height:17vh;
+    height:13vh;
 }
