@@ -50,4 +50,8 @@ table.center {
     body {
         background-color: #C0EFF6;
     }
+
+    .shrink-pad {
+        padding: 0 0px;
+    }
 }
