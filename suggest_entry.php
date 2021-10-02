@@ -31,39 +31,15 @@
             </nav> 
         </header>
 
-        <div class=" jumbo rounded-3 mx-auto m-3 jumbotron jumbotron-fluid light-yellow border">
-            <div class="container">
-              <h1 class="display-4 text-center">Location Suggestions</h1>
-              <p class="lead text-center">Show off the perfect spot to take a picture!</p>
-            </div>
-        </div>
+        <p class="text-center">
+        <?php
+            echo "Nice!  Your submission has been received and is pending review! \n";
+            
+            echo "Your location was " . $_POST["place"] . ", the address is " . $_POST["add"] . " and the category is " . $_POST["category"];
+        ?>
+        </p>
 
-        <div>
-            <form action="suggest_entry.php" method="post">
-                <div class="container-fluid px-5">
-                <div class="mx-6">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="location" name="place">
-                </div>
-                <div class="mx-6">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" name="add">
-                </div>
-                <div class="mx-6">
-                    <label for="category" class="form-label">Category</label>
-                    <select id="category" name="category" class="form-select">
-                        <option selected>Select a category</option>
-                        <option value="lifestyle">Lifestyle</option>
-                        <option value="sports">Sports</option>
-                        <option value="nature">Nature</option>
-                        <option value="candid">Candid</option>
-                        <option value="other">Other</option>"
-                    </select>
-                </div>
-
-                <button type="submit" class-"btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
+        <p class="text-center"><a class="btn btn-primary" href="suggestions.html" role="button">Create Another Suggestion</a></p>
+        <p class="text-center"><a class="btn btn-primary" href="index.html" role="button">Home</a></p>
     </body>
 </html>
