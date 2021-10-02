@@ -26,4 +26,5 @@ table.center {
 .pic-dim {
     height: 39vh;
     width: 30vw;
+    object-fit: cover;
 }
