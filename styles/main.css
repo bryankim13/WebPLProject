@@ -22,3 +22,8 @@ table.center {
 .shrink-pad {
     padding: 0 50px;
 }
+
+.pic-dim {
+    height: 39vh;
+    width: 30vw;
+}
