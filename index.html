@@ -28,6 +28,7 @@
             </nav> 
         </header>
         
+        <!-- use of a jumbotron for our main header for our home page to grab the user's attention -->
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
               <h1 class="display-4 text-center">KaClik!</h1>
@@ -38,8 +39,11 @@
             <img src="./images/paul.jpeg" class="img-fluid rounded-3" alt="home image">
         </div>
 
+        
+        <!-- use of multiple cards for better navigation purposes and cleaner organization of content -->
         <div class="container-fluid py-4">
             <div class="row">
+                <!-- one section card for recommended locations -->
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-body">
@@ -49,15 +53,55 @@
                         </div>
                     </div>
                 </div>
+                <!-- one section card for recently added photos -->
                 <div class="col-sm">
-                    <div class="card">
+                    <div class="card mid-card">
                         <div class="card-body">
                             <h2 class="text-center">
                                 Recently Added Photos
                             </h2>
+                            <section>
+                                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                    </div>
+                                    <div class="carousel-inner">
+                                      <div class="carousel-item active">
+                                        <img src="images/aesthetic.png" class="d-block w-100" alt="first image">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img src="images/alley.jpg" class="d-block w-100" alt="...">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img src="images/city.jpg" class="d-block w-100" alt="...">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img src="images/sign.jpg" class="d-block w-100" alt="...">
+                                      </div>
+                                    </div>
+                          
+                          
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="visually-hidden">Next</span>
+                                    </button>
+                                  </div>
+                          </section>
+                            <p class="text-center">
+                                Want to view more pictures?  View our image gallery.
+                            </p>
+                            <p class="text-center"><a class="btn btn-primary" href="gallery.html" role="button">Gallery</a></p>
                         </div>
                     </div>
                 </div>
+                <!-- one section card for new locations that have been suggested -->
                 <div class="col-sm">
                     <div class="card">
                         <div class="card-body">
@@ -73,3 +117,5 @@
 
     </body>
 </html>
+
+
