@@ -1,3 +1,14 @@
+<?php
+
+/** DATABASE SETUP **/
+include('database_connection.php');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
+$mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
+$user = null;
+
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +36,7 @@
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                 </div>
               </div>
             </nav> 
@@ -39,24 +50,50 @@
         </div>
 
         <div>
-            <form action="suggest_entry.php" method="post">
+            <form action="suggest_entry.php" method="get">
                 <div class="container-fluid px-5">
                 <div class="mx-6">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="location" name="place">
+                    <label for="location" class="form-label">Location Name</label>
+                    <input type="text" class="form-control" id="location" name="location">
                 </div>
                 <div class="mx-6">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" name="add">
+                    <label for="address" class="form-label"> Location Address</label>
+                    <input type="text" class="form-control" id="address" name="address">
                 </div>
                 <div class="mx-6">
-                    <label for="category" class="form-label">Category</label>
-                    <select id="category" name="category" class="form-select">
-                        <option selected>Select a category</option>
-                        <option value="lifestyle">Lifestyle</option>
-                        <option value="sports">Sports</option>
-                        <option value="nature">Nature</option>
-                        <option value="candid">Candid</option>
+                    <label for="inout" class="form-label">Indoor or Outdoor</label>
+                    <select id="inout" name="inout" class="form-select">
+                        <option selected>Choose indoor or outdoor</option>
+                        <option value="in">Indoor</option>
+                        <option value="out">Outdoor</option>
+                    </select>
+                </div>
+                <div class="mx-6">
+                    <label for="time" class="form-label">Time of Day</label>
+                    <select id="time" name="time" class="form-select">
+                        <option selected>Choose a time of day</option>
+                        <option value="morning">Morning</option>
+                        <option value="noon">Afternoon</option>
+                        <option value="night">Night</option>
+                    </select>
+                </div>
+                <div class="mx-6">
+                    <label for="money" class="form-label">Money Spent</label>
+                    <select id="money" name="money" class="form-select">
+                        <option selected>Rate the pricing</option>
+                        <option value="cheap">Cheap</option>
+                        <option value="avg">Average</option>
+                        <option value="expensive">Expensive</option>
+                    </select>
+                </div>
+                <div class="mx-6">
+                    <label for="activity" class="form-label">Activity</label>
+                    <select id="activity" name="activity" class="form-select">
+                        <option selected>Select an activity</option>
+                        <option value="food">Food</option>
+                        <option value="landscape">Landscape</option>
+                        <option value="events">Events</option>
+                        <option value="pfp">Profile Pictures</option>
                         <option value="other">Other</option>
                     </select>
                 </div>

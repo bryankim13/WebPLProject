@@ -41,7 +41,7 @@ session_start();
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";

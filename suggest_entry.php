@@ -25,7 +25,7 @@
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.html">Gallery</span></a>
                   <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                 </div>
               </div>
             </nav> 
@@ -33,9 +33,10 @@
 
         <p class="text-center">
         <?php
-            echo "Nice!  Your submission has been received and is pending review! \n";
+            echo "Nice!  Your submission has been posted! \n";
             
-            echo "Your location was " . $_POST["place"] . ", the address is " . $_POST["add"] . " and the category is " . $_POST["category"];
+            echo "Your location was " . $_GET["location"] . ", the address is " . $_GET["address"] . " and the activity is " . $_GET["activity"] . "<br>";
+            echo "You've also specified that this is a ." . $_GET["inout"] . ", can be done during the " . $_GET["time"] . ", and is " . $_GET["money"] . "."
         ?>
         </p>
 

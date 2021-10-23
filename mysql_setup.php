@@ -43,4 +43,5 @@
         indoor varchar(255) default 'outside',
         time varchar(255) default 'night',
         money varchar(255) default 'expensive',
-        activity varchar(255) default 'other');");
+        activity varchar(255) default 'other',
+        primary key(uid));");
