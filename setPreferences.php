@@ -62,18 +62,33 @@ session_start();
                         echo "<div class='alert alert-danger'>$error_msg</div>";
                     }
                 ?>
-                <form action="login.php" method="post">
+                <form action="setPreferences.php" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email"/>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"/>
+                    <label for="indoor">Indoors or Outdoors</label>
+                    <select class="form-control" id="indoor">
+                        <option>Indoors</option>
+                        <option>Outdoors</option>
+                    </select>
                     </div>
                     <div class="text-center">                
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    <a href="signup.php" class="btn btn-primary">Create Account</a>
+                    <label for="time">Time</label>
+                    <select class="form-control" id="time">
+                        <option>Day</option>
+                        <option>Night</option>
+                    </select>
+                    </div>
+                    <div class="text-center">                
+                    <label for="cost">Cost</label>
+                    <select class="form-control" id="cost">
+                        <option>Free</option>
+                        <option>Cheap</option>
+                        <option>Moderate</option>
+                        <option>Expensive</option>
+                    </select>
                     </div>
                 </form>
                 </div>
