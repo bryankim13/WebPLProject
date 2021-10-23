@@ -44,6 +44,7 @@ session_start();
                   <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
                         echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
 

@@ -37,6 +37,7 @@ session_start();
                   <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
                         echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
 
@@ -49,36 +50,6 @@ session_start();
               </div>
             </nav> 
         </header>
-        
-        <div class="container" style="margin-top: 15px;">
-            <div class="row col-xs-8 justify-content-center">
-                <h1>CaKlik</h1>
-                <p>Let the clicks begin</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-4">
-                <?php
-                    if (!empty($error_msg)) {
-                        echo "<div class='alert alert-danger'>$error_msg</div>";
-                    }
-                ?>
-                <form action="login.php" method="post">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"/>
-                    </div>
-                    <div class="text-center">                
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    <a href="signup.php" class="btn btn-primary">Create Account</a>
-                    </div>
-                </form>
-                </div>
-            </div>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>

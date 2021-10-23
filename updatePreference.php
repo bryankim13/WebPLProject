@@ -4,6 +4,7 @@ include('database_connection.php');
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
 $mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
 $user = null;
+
 // Join session or start one
 session_start();
 if (isset($_POST['indoor'])) { /// validate the email coming in
@@ -16,10 +17,10 @@ else {
     $res = $stmt->get_result();
     $data = $res->fetch_all(MYSQLI_ASSOC);
     if (!empty($data)) {         
-        $insert = $mysqli->prepare("insert into preference (uid, indoor, time,money,activity) values (?, ?, ?, ?, ?);");
-        $insert->bind_param("issss", $data[0]["uid"], $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"]); 
-        if(!$insert->execute()){
-            $message = "Error inserting data";
+        $update = $mysqli->prepare("update preference set indoor = ?, time = ?, money = ?, activity = ? where uid = ?;");
+        $update->bind_param("ssssi", $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"],$data[0]["uid"]); 
+        if(!$update->execute()){
+            $message = "Error updating data";
         }
         header("Location: index.php");
     } 
@@ -58,6 +59,7 @@ else {
                   <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
                         echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
 
@@ -70,11 +72,10 @@ else {
               </div>
             </nav> 
         </header>
-        
+
         <div class="container" style="margin-top: 15px;">
             <div class="row col-xs-8 justify-content-center">
-                <h1>CaKlik</h1>
-                <p>Let the clicks begin</p>
+                Update your Preferences!
             </div>
             <div class="row justify-content-center">
                 <div class="col-4">
@@ -83,7 +84,7 @@ else {
                         echo "<div class='alert alert-danger'>$message</div>";
                     }
                 ?>
-                <form action="setPreferences.php" method="post">
+                <form action="updatePreference.php" method="post">
                     <div class="mb-3">
                     <label for="indoor">Indoors or Outdoors</label>
                     <select class="form-control" id="indoor" name="indoor" required>
