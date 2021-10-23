@@ -22,7 +22,7 @@ session_start();
 
 // user was not found, create an account
             // NEVER store passwords into the database, use a secure hash instead:
-$pattern = "/^[a-zA-Z\d-_~][a-zA-Z\d.~-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
+$pattern = "/^[a-zA-Z\d\-\_\~][a-zA-Z\d\.\~\-\_]@[a-zA-Z\d\.\-]\.[a-zA-Z\d\.\-]*$/";
 if (isset($_POST["email"]) and preg_match($pattern, $_POST["email"])) { /// validate the email coming in
     $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
