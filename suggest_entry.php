@@ -1,3 +1,32 @@
+<?php
+/** DATABASE SETUP **/
+include('database_connection.php');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
+$mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
+$user = null;
+// Join session or start one
+session_start();
+
+$stmt = $mysqli->prepare("select uid from user where email = ?;");
+$stmt->bind_param("s", $_SESSION["email"]);
+if (!$stmt->execute()) {
+  $message = "Error getting uid";
+} else {
+  $res = $stmt->get_result();
+  $data = $res->fetch_all(MYSQLI_ASSOC);
+  if (!empty($data)) {
+    $suggest = $mysqli->prepare("insert into location (name, address, uid, indoor, time, money, activity) values (?, ?, ?, ?, ?, ?, ?)");
+    $suggest->bind_param("ssissss", $_GET["place"], $_GET["add"], $data[0]["uid"], $_GET["inout"], $_GET["time"], $_GET["money"], $_GET["activity"]);
+    if(!$suggest->execute()) {
+      $error_msg = "Failed to insert data";
+    }
+    header("LocationL index.php");
+  }
+  else {
+    $error_msg2 = "Failed to get uid";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,14 +62,14 @@
 
         <p class="text-center">
         <?php
-            echo "Nice!  Your submission has been posted! \n";
+            echo "Nice!  Your submission has been posted! <br>";
             
-            echo "Your location was " . $_GET["location"] . ", the address is " . $_GET["address"] . " and the activity is " . $_GET["activity"] . "<br>";
-            echo "You've also specified that this is a ." . $_GET["inout"] . ", can be done during the " . $_GET["time"] . ", and is " . $_GET["money"] . "."
+            echo "Your location was <b>" . $_GET["place"] . "</b>, the address is <b>" . $_GET["add"] . "</b> and the activity is <b>" . $_GET["activity"] . "</b> <br>";
+            echo "You've also specified that this is <b>" . $_GET["inout"] . "</b>, can be done during the <b>" . $_GET["time"] . "</b>, and is <b>" . $_GET["money"] . "</b>."
         ?>
         </p>
 
-        <p class="text-center"><a class="btn btn-primary" href="suggestions.html" role="button">Create Another Suggestion</a></p>
-        <p class="text-center"><a class="btn btn-primary" href="index.html" role="button">Home</a></p>
+        <p class="text-center"><a class="btn btn-primary" href="suggestions.php" role="button">Create Another Suggestion</a></p>
+        <p class="text-center"><a class="btn btn-primary" href="index.php" role="button">Home</a></p>
     </body>
 </html>

@@ -54,11 +54,11 @@ session_start();
                 <div class="container-fluid px-5">
                 <div class="mx-6">
                     <label for="location" class="form-label">Location Name</label>
-                    <input type="text" class="form-control" id="location" name="location">
+                    <input type="text" class="form-control" id="location" name="place">
                 </div>
                 <div class="mx-6">
                     <label for="address" class="form-label"> Location Address</label>
-                    <input type="text" class="form-control" id="address" name="address">
+                    <input type="text" class="form-control" id="address" name="add">
                 </div>
                 <div class="mx-6">
                     <label for="inout" class="form-label">Indoor or Outdoor</label>
@@ -81,6 +81,7 @@ session_start();
                     <label for="money" class="form-label">Money Spent</label>
                     <select id="money" name="money" class="form-select">
                         <option selected>Rate the pricing</option>
+                        <option value="free">Free</option>
                         <option value="cheap">Cheap</option>
                         <option value="avg">Average</option>
                         <option value="expensive">Expensive</option>
