@@ -45,20 +45,8 @@ if (isset($_POST["email"])) { /// validate the email coming in
                 $error_msg = "Invalid Password";
             }
         } else {
-            // user was not found, create an account
-            // NEVER store passwords into the database, use a secure hash instead:
-            $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
-            $insert->bind_param("sss", $_POST["name"], $_POST["email"], $hash);
-            if (!$insert->execute()) {
-                $error_msg = "Error creating new user";
-            } 
-            
-            // Save user information into the session to use later
-            $_SESSION["name"] = $_POST["name"];
-            $_SESSION["email"] = $_POST["email"];
-            $_SESSION["score"] = 0;
-            header("Location: question.php");
+            $message = "<div class='alert alert-danger'>Incorrect username and/or password!</div>";
+            header("Location: login.php");
             exit();
         }
     }
