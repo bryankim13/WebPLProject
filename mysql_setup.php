@@ -34,3 +34,12 @@
         uid int not null,
         name text not null,
         description text not null);");
+
+    /* Setting up preference table */
+    $db->query("drop table if exists preference");
+    $db->query("create table preference (
+        uid int not null,
+        inout varchar(255) default "out",
+        time varchar(255) default "night",
+        money varch(255) default "$$$",
+        activity varchar(255) default "other");")
