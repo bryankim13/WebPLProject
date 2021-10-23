@@ -8,26 +8,12 @@ $user = null;
 // Join session or start one
 session_start();
 if (isset($_POST['indoor'])) { /// validate the email coming in
-$stmt = $mysqli->prepare("select uid from user where email = ?;");
-$stmt->bind_param("s", $_SESSION["email"]);
-if (!$stmt->execute()) {
-        $message = "Error getting uid";
-    } 
-else { 
-    $res = $stmt->get_result();
-    $data = $res->fetch_all(MYSQLI_ASSOC);
-    if (!empty($data)) {          // updates user data
         $update = $mysqli->prepare("update preference set indoor = ?, time = ?, money = ?, activity = ? where uid = ?;");
-        $update->bind_param("ssssi", $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"],$data[0]["uid"]); 
+        $update->bind_param("ssssi", $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"],$_SESSION['uid']); 
         if(!$update->execute()){
             $message = "Error updating data";
         }
         header("Location: index.php");
-    } 
-    else {
-        $message = "<div class='alert alert-danger'>Could not get UID!</div>";
-    }
-}
 }
 ?>
 <!DOCTYPE html>

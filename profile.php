@@ -55,13 +55,25 @@ session_start();
             <div class="m-3">
             <h2>Information: <h2>
                 <?php
-                    echo "<p>Name: ".$_SESSION['name'] . "</a>";
-                    echo "<p>Email: ".$_SESSION['email'] . "</a>";
+                    echo "<p>Name: ".$_SESSION['name'] . "</p>";
+                    echo "<p>Email: ".$_SESSION['email'] . "</p>";
                 ?>    
             <h2>Preferences</h2>
                 <?php
-                    // $stmt = $mysqli->prepare("select * from preference where uid = ?;");
-                    // $stmt->bind_param("s", $_SESSION["email"]);
+                    $stmt = $mysqli->prepare("select * from preference where uid = ?;");
+                    $stmt->bind_param("i", $_SESSION["uid"]);
+                    if (!$stmt->execute()) {
+                    
+                    }
+                    $res = $stmt->get_result();
+                    $data = $res->fetch_all(MYSQLI_ASSOC);
+                    echo "<p>Location Type: ".$data[0]['indoor'] . "</p>";
+                    echo "<p>Time of Day: ".$data[0]['time'] . "</p>";
+                    echo "<p>Cost: ".$data[0]['money'] . "</p>";
+                    echo "<p>Activity: ".$data[0]['activity'] . "</p>";
+
+
+
                 ?>  
             <div>
         <div>
