@@ -21,7 +21,7 @@
         name text not null,
         address text not null,
         uid int not null,
-        inout varchar(255) null default 'outside',
+        indoor varchar(255) default 'outside',
         time varchar(255) default 'night',
         money varchar(255) default 'expensive',
         activity varchar(255) default 'other',
@@ -33,13 +33,14 @@
         pid int not null auto_increment,
         uid int not null,
         name text not null,
-        description text not null);");
+        description text not null,
+        primary key(pid));");
 
     /* Setting up preference table */
     $db->query("drop table if exists preference");
     $db->query("create table preference (
         uid int not null,
-        inout varchar(255) null default 'outside',
+        indoor varchar(255) default 'outside',
         time varchar(255) default 'night',
         money varchar(255) default 'expensive',
         activity varchar(255) default 'other');");
