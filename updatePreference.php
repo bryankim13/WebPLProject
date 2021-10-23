@@ -16,7 +16,7 @@ if (!$stmt->execute()) {
 else { 
     $res = $stmt->get_result();
     $data = $res->fetch_all(MYSQLI_ASSOC);
-    if (!empty($data)) {         
+    if (!empty($data)) {          // updates user data
         $update = $mysqli->prepare("update preference set indoor = ?, time = ?, money = ?, activity = ? where uid = ?;");
         $update->bind_param("ssssi", $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"],$data[0]["uid"]); 
         if(!$update->execute()){
