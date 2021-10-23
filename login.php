@@ -21,34 +21,36 @@ session_destroy();
 session_start();
 
 if (isset($_POST["email"])) { /// validate the email coming in
-    $pattern = "/^[a-zA-Z\d-_~][a-zA-Z\d.~-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
-    $stmt = $mysqli->prepare("select * from user where email = ?;");
-    $stmt->bind_param("s", $_POST["email"]);
-    if (!$stmt->execute()) {
-        $error_msg = "Error checking for user";
-    } else { 
-        // result succeeded
-        $res = $stmt->get_result();
-        $data = $res->fetch_all(MYSQLI_ASSOC);
-        
-        if (!empty($data)) { //(isset($data[0])) {
-            // user was found!
+    $pattern = "/^[a-zA-Z\d\-_~]*[a-zA-Z\d.~\-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
+    if (preg_match($pattern, $_POST["email"])) {
+        $stmt = $mysqli->prepare("select * from user where email = ?;");
+        $stmt->bind_param("s", $_POST["email"]);
+        if (!$stmt->execute()) {
+            $error_msg = "Error checking for user";
+        } else { 
+            // result succeeded
+            $res = $stmt->get_result();
+            $data = $res->fetch_all(MYSQLI_ASSOC);
             
-            // validate the user's password
-            if (password_verify($_POST["password"], $data[0]["password"])) {
-                // Save user information into the session to use later
-                $_SESSION["name"] = $data[0]["name"];
-                $_SESSION["email"] = $data[0]["email"];
-                header("Location: index.php");
-                exit();
+            if (!empty($data)) { //(isset($data[0])) {
+                // user was found!
+                
+                // validate the user's password
+                if (password_verify($_POST["password"], $data[0]["password"])) {
+                    // Save user information into the session to use later
+                    $_SESSION["name"] = $data[0]["name"];
+                    $_SESSION["email"] = $data[0]["email"];
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    // User was found but entered an invalid password
+                    $error_msg = "Invalid Password";
+                }
             } else {
-                // User was found but entered an invalid password
-                $error_msg = "Invalid Password";
+                $message = "<div class='alert alert-danger'>Incorrect username and/or password!</div>";
+                header("Location: login.php");
+                exit();
             }
-        } else {
-            $message = "<div class='alert alert-danger'>Incorrect username and/or password!</div>";
-            header("Location: login.php");
-            exit();
         }
     }
 }
