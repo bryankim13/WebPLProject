@@ -33,7 +33,7 @@ session_start();
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
-              <a class="navbar-brand px-3 mx-auto" href="index.html">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>

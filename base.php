@@ -1,4 +1,13 @@
+<?php
+/** DATABASE SETUP **/
+include('database_connection.php');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
+$mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
+$user = null;
 
+// Join session or start one
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,7 +26,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
-              <a class="navbar-brand px-3 mx-auto" href="index.html">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -26,6 +35,16 @@
                   <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.html">Locations</a>
                   <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <?php
+                    if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
+                        echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
+
+                    }
+                    else{
+                        echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                    }
+                ?>
                 </div>
               </div>
             </nav> 
