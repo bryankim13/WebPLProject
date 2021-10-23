@@ -42,6 +42,16 @@ session_start();
                   <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.html">Locations</a>
                   <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <?php
+                    if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
+                        echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
+
+                    }
+                    else{
+                        echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                    }
+                ?>
                 </div>
               </div>
             </nav> 
