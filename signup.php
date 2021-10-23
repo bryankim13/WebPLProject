@@ -24,15 +24,22 @@ session_start();
             // NEVER store passwords into the database, use a secure hash instead:
 if (isset($_POST["email"])) { /// validate the email coming in
     $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
-    $insert->bind_param("sss", $_POST["name"], $_POST["email"], $hash);
-    if (!$insert->execute()) {
-        $error_msg = "Error creating new user";
-        } 
-    // Save user information into the session to use later
-    $_SESSION["name"] = $_POST["name"];
-    $_SESSION["email"] = $_POST["email"];
-    header("Location: setPreferences.php");
+    $pattern = "/^[a-zA-Z\d\-_~]*[a-zA-Z\d.~\-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
+    if (!preg_match($pattern, $_POST["email"])) {
+        $error_msg2 = "Enter a valid email";
+        header("Location: index.php");
+    }
+    else {
+        $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
+        $insert->bind_param("sss", $_POST["name"], $_POST["email"], $hash);
+        if (!$insert->execute()) {
+            $error_msg = "Error creating new user";
+            } 
+        // Save user information into the session to use later
+        $_SESSION["name"] = $_POST["name"];
+        $_SESSION["email"] = $_POST["email"];
+        header("Location: index.php");
+    }
     exit();
 }
 ?>
