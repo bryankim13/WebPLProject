@@ -27,7 +27,6 @@ if (isset($_POST["email"])) { /// validate the email coming in
     $pattern = "/^[a-zA-Z\d\-_~]*[a-zA-Z\d.~\-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
     if (!preg_match($pattern, $_POST["email"])) {
         $error_msg2 = "Enter a valid email";
-        header("Location: index.php");
     }
     else {
         $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
@@ -38,7 +37,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
         // Save user information into the session to use later
         $_SESSION["name"] = $_POST["name"];
         $_SESSION["email"] = $_POST["email"];
-        header("Location: index.php");
+        header("Location: setPreferences.php");
     }
     exit();
 }

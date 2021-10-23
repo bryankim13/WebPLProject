@@ -4,9 +4,31 @@ include('database_connection.php');
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
 $mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
 $user = null;
-
 // Join session or start one
 session_start();
+if (isset($_POST['indoor'])) { /// validate the email coming in
+$stmt = $mysqli->prepare("select uid from user where email = ?;");
+$stmt->bind_param("s", $_SESSION["email"]);
+if (!$stmt->execute()) {
+        $message = "Error getting uid";
+    } 
+else { 
+    $res = $stmt->get_result();
+    $data = $res->fetch_all(MYSQLI_ASSOC);
+    if (!empty($data)) {         
+        $insert = $mysqli->prepare("insert into preference (uid, indoor, time,money,activity) values (?, ?, ?, ?, ?);");
+        $insert->bind_param("issss", $data[0]["uid"], $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"]); 
+        if(!$insert->execute()){
+            $message = "Error inserting data";
+        }
+        header("Location: index.php");
+    } 
+    else {
+        $message = "<div class='alert alert-danger'>Could not get UID!</div>";
+    }
+}
+$message = "<div class='alert alert-danger'>Could e!</div>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,38 +80,47 @@ session_start();
             <div class="row justify-content-center">
                 <div class="col-4">
                 <?php
-                    if (!empty($error_msg)) {
-                        echo "<div class='alert alert-danger'>$error_msg</div>";
+                    if (!empty($message)) {
+                        echo "<div class='alert alert-danger'>$message</div>";
                     }
                 ?>
                 <form action="setPreferences.php" method="post">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"/>
-                    </div>
-                    <div class="mb-3">
                     <label for="indoor">Indoors or Outdoors</label>
-                    <select class="form-control" id="indoor">
+                    <select class="form-control" id="indoor" name="indoor" required>
                         <option>Indoors</option>
                         <option>Outdoors</option>
                     </select>
                     </div>
-                    <div class="text-center">                
+                    <div class="mb-3">
                     <label for="time">Time</label>
-                    <select class="form-control" id="time">
+                    <select class="form-control" id="time" name="time" required>
                         <option>Day</option>
                         <option>Night</option>
                     </select>
                     </div>
-                    <div class="text-center">                
+                    <div class="mb-3">
                     <label for="cost">Cost</label>
-                    <select class="form-control" id="cost">
+                    <select class="form-control" id="cost" name="cost" required>
                         <option>Free</option>
                         <option>Cheap</option>
                         <option>Moderate</option>
                         <option>Expensive</option>
                     </select>
                     </div>
+                    <div class="mb-3">
+                    <label for="activity">Activity</label>
+                    <select class="form-control" id="activity" name="activity" required>
+                        <option>Food</option>
+                        <option>Landscape</option>
+                        <option>Events</option>
+                        <option>Profile Pictures</option>
+                        <option>Other</option>
+                    </select>
+                    </div>
+                    <div class="text-center">                
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>                
                 </form>
                 </div>
             </div>
