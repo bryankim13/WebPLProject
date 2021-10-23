@@ -58,7 +58,7 @@ else {
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
-              <a class="navbar-brand px-3 mx-auto" href="index.html">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -78,7 +78,7 @@ else {
                         echo "<div class='alert alert-danger'>$error_msg</div>";
                     }
                 ?>
-                <form action="login.php" method="post">
+                <form action="signup.php" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email"/>
