@@ -20,7 +20,8 @@ session_destroy();
 // Join the session or start a new one
 session_start();
 
-if (isset($_POST["email"])) { /// validate the email coming in
+$pattern = "/^[a-zA-Z\d-_~][a-zA-Z\d.~-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
+if (isset($_POST["email"]) and preg_match($pattern, $_POST["email"])) { /// validate the email coming in
     $stmt = $mysqli->prepare("select * from user where email = ?;");
     $stmt->bind_param("s", $_POST["email"]);
     if (!$stmt->execute()) {

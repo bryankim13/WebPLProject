@@ -22,7 +22,8 @@ session_start();
 
 // user was not found, create an account
             // NEVER store passwords into the database, use a secure hash instead:
-if (isset($_POST["email"])) { /// validate the email coming in
+$pattern = "/^[a-zA-Z\d-_~][a-zA-Z\d.~-_]@[a-zA-Z\d.-].[a-zA-Z\d.-]*$/";
+if (isset($_POST["email"]) and preg_match($pattern, $_POST["email"])) { /// validate the email coming in
     $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
     $insert->bind_param("sss", $_POST["name"], $_POST["email"], $hash);
@@ -34,6 +35,9 @@ if (isset($_POST["email"])) { /// validate the email coming in
     $_SESSION["email"] = $_POST["email"];
     header("Location: setup.php");
     exit();
+}
+else {
+    $error_msg2 = "Enter a proper email";
 }
 ?>
 <!DOCTYPE html>
