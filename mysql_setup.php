@@ -32,6 +32,7 @@
     $db->query("create table picture (
         pid int not null auto_increment,
         uid int not null,
+        lid into not null,
         name varchar(255) not null,
         img_dir varchar(255) not null,
         description text not null,
