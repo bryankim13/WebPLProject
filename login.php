@@ -40,6 +40,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
                     // Save user information into the session to use later
                     $_SESSION["name"] = $data[0]["name"];
                     $_SESSION["email"] = $data[0]["email"];
+                    $_SESSION["uid"] = $data[0]["uid"];
                     header("Location: index.php");
                     exit();
                 } else {

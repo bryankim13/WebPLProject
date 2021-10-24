@@ -15,9 +15,10 @@ if (!$stmt->execute()) {
 else { 
     $res = $stmt->get_result();
     $data = $res->fetch_all(MYSQLI_ASSOC);
-    if (!empty($data)) {         
+    if (!empty($data)) {    
+        $_SESSION["uid"] = data[0]["uid"];     
         $insert = $mysqli->prepare("insert into preference (uid, indoor, time,money,activity) values (?, ?, ?, ?, ?);");
-        $insert->bind_param("issss", $data[0]["uid"], $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"]); 
+        $insert->bind_param("issss", $_SESSION["uid"], $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"]); 
         if(!$insert->execute()){
             $message = "Error inserting data";
         }
