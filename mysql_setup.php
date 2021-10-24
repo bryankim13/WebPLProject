@@ -32,7 +32,10 @@
     $db->query("create table picture (
         pid int not null auto_increment,
         uid int not null,
-        lid into not null,
+        indoor varchar(255) default 'outside',
+        time varchar(255) default 'night',
+        money varchar(255) default 'expensive',
+        activity varchar(255) default 'other',
         name varchar(255) not null,
         img_dir varchar(255) not null,
         description text not null,
@@ -41,7 +44,7 @@
     /* Setting up preference table */
     $db->query("drop table if exists preference");
     $db->query("create table preference (
-        uid int not null,
+        uid int not null auto_increment,
         indoor varchar(255) default 'outside',
         time varchar(255) default 'night',
         money varchar(255) default 'expensive',
