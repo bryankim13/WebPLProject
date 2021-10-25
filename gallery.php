@@ -7,7 +7,10 @@ $mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
 $user = null;
 
 session_start();
-
+function getPictureArr($mysqli){ //function to do this query, frequently used on this page
+  $res = $mysqli->query("select * from picture");
+  return $res;
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +29,7 @@ session_start();
 
     </head>  
     <body>
-        <header>
+    <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <a class="navbar-brand px-3 mx-auto" href="upload.php">Upload</a>
@@ -37,9 +40,9 @@ session_start();
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.php">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
-                <?php
+                  <?php
                     if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='suggestions.php'>Suggestions</a>";
                         echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
                         echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
@@ -47,6 +50,7 @@ session_start();
                     }
                     else{
                         echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                        echo "<a class='nav-item nav-link active' href='signup.php'>Sign Up</a>";
                     }
                 ?>
                 </div>
@@ -67,9 +71,9 @@ session_start();
         <div class="container">
             <div class="row" id="gallery" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <?php
-                  $res = $mysqli->query("select * from picture");
+                  $quer = getPictureArr($mysqli);
                   $index = 0;
-                  while ($data = $res->fetch_assoc()) {
+                  while ($data = $quer->fetch_assoc()) { // php used to echo out each picture in the database
                     echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"</div>";
                     $index += 1;
                   }
@@ -91,9 +95,10 @@ session_start();
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                               <?php
-                                $res2 = $mysqli->query("select * from picture");
+                                $quer2 = getPictureArr($mysqli);
+                                // $res2 = $mysqli->query("select * from picture");
                                 $index2 = 0;
-                                while ($data2 = $res2->fetch_assoc()) {
+                                while ($data2 = $quer2->fetch_assoc()) {
                                   if ($index2 == 0) {
                                     echo "<div class=\"carousel-item active\"><img class=\"d-block w-100\" src=\"images/{$data2['img_dir']}\" alt=\"{$data2['name']}\"></div>";
                                   } else {
