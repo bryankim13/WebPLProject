@@ -7,7 +7,7 @@ $user = null;
 // Join session or start one
 session_start();
 if (isset($_POST['indoor'])) { /// validate the email coming in
-$stmt = $mysqli->prepare("select uid from user where email = ?;");
+$stmt = $mysqli->prepare("select * from user where email = ?;");
 $stmt->bind_param("s", $_SESSION["email"]);
 if (!$stmt->execute()) {
         $message = "Error getting uid";
@@ -16,7 +16,7 @@ else {
     $res = $stmt->get_result();
     $data = $res->fetch_all(MYSQLI_ASSOC);
     if (!empty($data)) {    
-        $_SESSION["uid"] = data[0]["uid"];     
+        $_SESSION["uid"] = $data[0]["uid"];
         $insert = $mysqli->prepare("insert into preference (uid, indoor, time,money,activity) values (?, ?, ?, ?, ?);");
         $insert->bind_param("issss", $_SESSION["uid"], $_POST["indoor"], $_POST["time"],$_POST["cost"],$_POST["activity"]); 
         if(!$insert->execute()){
