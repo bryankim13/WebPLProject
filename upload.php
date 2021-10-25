@@ -11,7 +11,7 @@ session_start();
 if(isset($_POST["upload"])){
   $filename = $_FILES["file"]["name"];
   $tempname = $_FILES["file"]["tmp_name"];
-  $folder = "../images".$filename;
+  $folder = "images/".$filename;
   $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
   $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
   if(!$stmt->execute()){
