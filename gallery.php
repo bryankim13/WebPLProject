@@ -1,3 +1,15 @@
+<?php
+
+/** DATABASE SETUP **/
+include('database_connection.php');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // Extra Error Printing
+$mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
+$user = null;
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -42,30 +54,14 @@
         <!-- used a row to list out the pictures and to flow nicely on the screen -->
         <div class="container">
             <div class="row" id="gallery" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <div class="col-12 col-sm-6 col-lg-3">
-                  <img class="w-100 rounded-3 " src="images/paul.jpeg" alt="Paul" data-bs-target="#carouselExample" data-bs-slide-to="0">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                  <img class="w-100 rounded-3" src="images/aesthetic.png" alt="aesthetic" data-bs-target="#carouselExample" data-bs-slide-to="1">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/alley.jpg" alt="alley" data-bs-target="#carouselExample" data-bs-slide-to="2">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/sign.jpg" alt="sign" data-bs-target="#carouselExample" data-bs-slide-to="3">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/stars.jpeg" alt="star" data-bs-target="#carouselExample" data-bs-slide-to="4">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/carters.jpeg" alt="carters" data-bs-target="#carouselExample" data-bs-slide-to="5">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/lake.jpeg" alt="lake" data-bs-target="#carouselExample" data-bs-slide-to="6">
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <img class="w-100 rounded-3" src="images/eway.jpeg" alt="eway" data-bs-target="#carouselExample" data-bs-slide-to="7">
-                </div>
+                <?php
+                  $res = $mysqli->query("select * from picture");
+                  $index = 0;
+                  while ($data = $res->fetch_assoc()) {
+                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"</div>";
+                    $index += 1;
+                  }
+                ?>
             </div> 
 
             <!-- Modal from bootstrap to use as a popup for users to interact with. 
@@ -73,7 +69,7 @@
                 As of right now, we did not incorporate a database, so we manually added the
                 pictures. 
             -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -112,7 +108,7 @@
                   </div>
                 </div>
               </div>
-        </div>
+        </div> -->
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
