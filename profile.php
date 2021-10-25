@@ -58,7 +58,6 @@ session_start();
                 <?php
                     echo "<p>Name: ".$_SESSION['name'] . "</p>";
                     echo "<p>Email: ".$_SESSION['email'] . "</p>";
-                    echo "<p>" . $_SESSION['uid'] . "</p>";
                 ?>    
             <h2>Preferences</h2>
                 <?php
