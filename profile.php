@@ -68,10 +68,10 @@ session_start();
                     }
                     $res = $stmt->get_result();
                     $data = $res->fetch_all(MYSQLI_ASSOC);
-                    echo "<p>Location Type: ".$data[0]['indoor'] . "</p>";
-                    echo "<p>Time of Day: ".$data[0]['time'] . "</p>";
-                    echo "<p>Cost: ".$data[0]['money'] . "</p>";
-                    echo "<p>Activity: ".$data[0]['activity'] . "</p>";
+                    echo "<p>Location Type: " . $data[0]['indoor'] . "</p>";
+                    echo "<p>Time of Day: " . $data[0]['time'] . "</p>";
+                    echo "<p>Cost: " . $data[0]['money'] . "</p>";
+                    echo "<p>Activity: " . $data[0]['activity'] . "</p>";
 
 
 
