@@ -69,15 +69,15 @@ session_start();
                 <div class="container-fluid px-5">
                 <div class="mx-6">
                     <label for="location" class="form-label">Location Name</label>
-                    <input type="text" class="form-control" id="location" name="place">
+                    <input type="text" class="form-control" id="location" name="place" required>
                 </div>
                 <div class="mx-6">
                     <label for="address" class="form-label"> Location Address</label>
-                    <input type="text" class="form-control" id="address" name="add">
+                    <input type="text" class="form-control" id="address" name="add" required>
                 </div>
                 <div class="mx-6">
                     <label for="inout" class="form-label">Indoor or Outdoor</label>
-                    <select id="inout" name="inout" class="form-select">
+                    <select id="inout" name="inout" class="form-select" required>
                         <option selected>Choose indoor or outdoor</option>
                         <option value="in">Indoor</option>
                         <option value="out">Outdoor</option>
@@ -85,7 +85,7 @@ session_start();
                 </div>
                 <div class="mx-6">
                     <label for="time" class="form-label">Time of Day</label>
-                    <select id="time" name="time" class="form-select">
+                    <select id="time" name="time" class="form-select" required>
                         <option selected>Choose a time of day</option>
                         <option value="morning">Morning</option>
                         <option value="noon">Afternoon</option>
@@ -94,7 +94,7 @@ session_start();
                 </div>
                 <div class="mx-6">
                     <label for="money" class="form-label">Money Spent</label>
-                    <select id="money" name="money" class="form-select">
+                    <select id="money" name="money" class="form-select" required>
                         <option selected>Rate the pricing</option>
                         <option value="free">Free</option>
                         <option value="cheap">Cheap</option>
@@ -104,7 +104,7 @@ session_start();
                 </div>
                 <div class="mx-6">
                     <label for="activity" class="form-label">Activity</label>
-                    <select id="activity" name="activity" class="form-select">
+                    <select id="activity" name="activity" class="form-select" required>
                         <option selected>Select an activity</option>
                         <option value="food">Food</option>
                         <option value="landscape">Landscape</option>

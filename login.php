@@ -48,9 +48,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
                     $error_msg = "Invalid Password";
                 }
             } else {
-                $message = "<div class='alert alert-danger'>Incorrect username and/or password!</div>";
-                header("Location: login.php");
-                exit();
+                $error_msg = "Incorrect username and/or password!"; // if user doesn't exist
             }
         }
     }
