@@ -7,21 +7,38 @@ $user = null;
 
 // Join session or start one
 session_start();
+function validateImageFile($file, $ext) {
+  foreach ($ext as $dif) {
+    $extension = $dif[0];
+    $pos = strpos($file, $extension);
+    if ($pos !== false) {
+      return true;
+    } else {
+      continue;
+    }
+  }
+  return false;
+}
 
 if(isset($_POST["upload"])){
   $filename = $_FILES["file"]["name"];
   $tempname = $_FILES["file"]["tmp_name"];
+  $extensions = array (['jpg'], ['jpeg'], ['jfif'], ['png'], ['gif']);
   $folder = "images/".$filename;
-  $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
-  $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
-  if(!$stmt->execute()){
-    $err_msg = "FAILED TO UPLOAD ". $filename;
-  }
-  if(move_uploaded_file($tempname, $folder)){
-    $message = "UPLOAD FOR ". $filename . "SUCCESSFUL!";
-  }
-  else{
-    $err_msg = "FAILED MOVE " . $filename;
+  if (validateImageFile($filename, $extensions) == true) {
+    $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
+    $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
+    if(!$stmt->execute()){
+      $err_msg = "FAILED TO UPLOAD ". $filename;
+    }
+    if(move_uploaded_file($tempname, $folder)){
+      $message = "UPLOAD FOR ". $filename . " SUCCESSFUL!";
+    }
+    else{
+      $err_msg = "FAILED MOVE " . $filename;
+    }
+  } else {
+    $err_msg = "NOT A VALID IMAGE FILE";
   }
 }
 ?>
