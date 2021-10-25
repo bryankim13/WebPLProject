@@ -28,7 +28,7 @@ session_start();
 
     <body>
 
-        <header>
+    <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <a class="navbar-brand px-3 mx-auto" href="upload.php">Upload</a>
@@ -39,9 +39,9 @@ session_start();
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.php">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
-                <?php
+                  <?php
                     if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='suggestions.php'>Suggestions</a>";
                         echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
                         echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
@@ -49,6 +49,7 @@ session_start();
                     }
                     else{
                         echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                        echo "<a class='nav-item nav-link active' href='signup.php'>Sign Up</a>";
                     }
                 ?>
                 </div>
