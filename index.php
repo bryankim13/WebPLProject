@@ -14,6 +14,7 @@ session_start();
       https://getbootstrap.com/docs/5.1/getting-started/introduction/ - for carousel, navbar, cards, etc.
       https://cs4640.cs.virginia.edu/pso3td/project/
       https://storage.googleapis.com/kaclik-demo/WebPLProject/index.html
+      https://www.youtube.com/watch?v=1NiJcZrPHvA&ab_channel=TechWorldwithNana
     -->
     <!DOCTYPE html>
 <html lang="en">
