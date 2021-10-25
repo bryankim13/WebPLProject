@@ -78,16 +78,14 @@ session_start();
                 <div class="mx-6">
                     <label for="inout" class="form-label">Indoor or Outdoor</label>
                     <select id="inout" name="inout" class="form-select" required>
-                        <option selected>Choose indoor or outdoor</option>
-                        <option value="in">Indoor</option>
-                        <option value="out">Outdoor</option>
+                        <option value="indoor" selected>Indoor</option>
+                        <option value="outdoor">Outdoor</option>
                     </select>
                 </div>
                 <div class="mx-6">
                     <label for="time" class="form-label">Time of Day</label>
                     <select id="time" name="time" class="form-select" required>
-                        <option selected>Choose a time of day</option>
-                        <option value="morning">Morning</option>
+                        <option value="morning" selected>Morning</option>
                         <option value="noon">Afternoon</option>
                         <option value="night">Night</option>
                     </select>
@@ -95,8 +93,7 @@ session_start();
                 <div class="mx-6">
                     <label for="money" class="form-label">Money Spent</label>
                     <select id="money" name="money" class="form-select" required>
-                        <option selected>Rate the pricing</option>
-                        <option value="free">Free</option>
+                        <option value="free" selected>Free</option>
                         <option value="cheap">Cheap</option>
                         <option value="avg">Average</option>
                         <option value="expensive">Expensive</option>
@@ -105,8 +102,7 @@ session_start();
                 <div class="mx-6">
                     <label for="activity" class="form-label">Activity</label>
                     <select id="activity" name="activity" class="form-select" required>
-                        <option selected>Select an activity</option>
-                        <option value="food">Food</option>
+                        <option value="food" selected>Food</option>
                         <option value="landscape">Landscape</option>
                         <option value="events">Events</option>
                         <option value="pfp">Profile Pictures</option>
