@@ -9,7 +9,7 @@ $user = null;
 session_start();
 if(isset($_POST["submit"])){
   $message = $_FILES["file"]["name"];
-  
+  echo $message;
 }
 ?>
 <!DOCTYPE html>
