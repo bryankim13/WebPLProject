@@ -7,9 +7,21 @@ $user = null;
 
 // Join session or start one
 session_start();
-if(isset($_POST["submit"])){
-  $message = $_FILES["file"]["name"];
-  
+if(isset($_POST["upload"])){
+  $filename = $_FILES["file"]["name"];
+  $tempname = $_FILES["file"]["tmp_name"];
+  $folder = "../images".$filename;
+  $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
+  $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
+  if(!$stmt->execute()){
+    $err_msg = "FAILED TO UPLOAD ". $filename;
+  }
+  if(move_uploaded_file($tempname, $folder)){
+    $message = "UPLOAD FOR ". $filename . "SUCCESSFUL!";
+  }
+  else{
+    $err_msg = "FAILED MOVE " . $filename;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -60,11 +72,18 @@ if(isset($_POST["submit"])){
             <h1>Upload your pictures here!<h1>
           <div>
           <?php
-                    if (!empty($message)) {
-                        echo "<div class='alert alert-danger'>$message</div>";
+                    if (!empty($err_msg)) {
+                        echo "<div class='alert alert-danger'>$err_msg</div>";
                     }
+                    if (!empty($message)) {
+                      echo "<div class='alert alert-success'>$message</div>";
+                  }
           ?>
-          <form method = "post" enctype = "multipart/form-data">
+          <form method = "post" action="upload.php" enctype = "multipart/form-data">
+            <div class="mb-3">
+              <label for="name" class="form-label">File Name:</label>
+              <input type="name" class="form-control" id="name" name="name"/>
+            </div>
             <div class="mb-3">
               <label for="indoor">Indoors or Outdoors</label>
               <select class="form-control" id="indoor" name="indoor" required>
@@ -105,7 +124,7 @@ if(isset($_POST["submit"])){
               <input type = "file" name = "file" value = ""/>
             </div>
             <div class="mb-3">
-              <button type="submit" class="btn btn-primary">Upload</button>
+              <button type="submit" name="upload" class="btn btn-primary">Upload</button>
             </div>
           </div>
         </form>
