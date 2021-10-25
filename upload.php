@@ -89,8 +89,8 @@ if(isset($_POST["upload"])){
         </header>
         <div class = "container justify-content-center">
           <div>
-            <h1>Upload your pictures here!<h1>
-          <div>
+            <h1>Upload your pictures here!</h1>
+          </div>
           <?php
                     if (!empty($err_msg)) {
                         echo "<div class='alert alert-danger'>$err_msg</div>";

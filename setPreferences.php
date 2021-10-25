@@ -90,21 +90,21 @@ else {
                 <form action="setPreferences.php" method="post">
                     <div class="mb-3">
                     <label for="indoor">Indoors or Outdoors</label>
-                    <select class="form-control" id="indoor" name="indoor" required>
+                    <select class="form-control" id="indoor" name="indoor" required="required" size="2">
                         <option>Indoors</option>
                         <option>Outdoors</option>
                     </select>
                     </div>
                     <div class="mb-3">
                     <label for="time">Time</label>
-                    <select class="form-control" id="time" name="time" required>
+                    <select class="form-control" id="time" name="time" required="required" size="2">
                         <option>Day</option>
                         <option>Night</option>
                     </select>
                     </div>
                     <div class="mb-3">
                     <label for="cost">Cost</label>
-                    <select class="form-control" id="cost" name="cost" required>
+                    <select class="form-control" id="cost" name="cost" required="required" size="4">
                         <option>Free</option>
                         <option>Cheap</option>
                         <option>Moderate</option>
@@ -113,7 +113,7 @@ else {
                     </div>
                     <div class="mb-3">
                     <label for="activity">Activity</label>
-                    <select class="form-control" id="activity" name="activity" required>
+                    <select class="form-control" id="activity" name="activity" required="required" size="5">
                         <option>Food</option>
                         <option>Landscape</option>
                         <option>Events</option>

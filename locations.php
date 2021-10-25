@@ -61,7 +61,7 @@ session_start();
             </div>
         </div>
 
-        <center>
+        <div class="center">
         <!-- this section uses an array with the fetch all command that will return an array of the query
         we want and using it within a foreach loop -->
         <?php
@@ -73,11 +73,11 @@ session_start();
         }
         echo "</table>";
         ?>
-        </center>
+        </div>
 
-        <center>
+        <div class="center">
           <a href="json_maker.php" class="btn btn-primary">Get a Json File</a>
-        </center>
+      </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
