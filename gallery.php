@@ -58,7 +58,7 @@ session_start();
                   $res = $mysqli->query("select * from picture");
                   $index = 0;
                   while ($data = $res->fetch_assoc()) {
-                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"</div>";
+                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"</div>";
                     $index += 1;
                   }
                 ?>
@@ -69,7 +69,7 @@ session_start();
                 As of right now, we did not incorporate a database, so we manually added the
                 pictures. 
             -->
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -78,37 +78,19 @@ session_start();
                     <div class="modal-body">
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img class="d-block w-100" src="images/paul.jpeg" alt="Paul">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/aesthetic.png" alt="Aesthetic">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/alley.jpg" alt="Alley">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/sign.jpg" alt="Sign">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/stars.jpeg" alt="Star">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/carters.jpeg" alt="Carter's">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/lake.jpeg" alt="Lake">
-                              </div>
-                              <div class="carousel-item">
-                                <img class="d-block w-100" src="images/eway.jpeg" alt="Eway">
-                              </div>
+                              <?php
+                                $res2 = $mysqli->query("select * from picture");
+                                while ($data2 = $res2->fetch_assoc()) {
+                                  echo "<div class=\"carousel-item active\"><img class=\"d-block w-100\" src=\"images/{$data2['img_dir']}\" alt=\"{$data2['name']}\"></div>";
+                                }
+                              ?>
                             </div>
                         </div>
                     </div>
                   </div>
                 </div>
               </div>
-        </div> -->
+        </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
