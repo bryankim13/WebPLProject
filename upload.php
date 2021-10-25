@@ -7,6 +7,7 @@ $user = null;
 
 // Join session or start one
 session_start();
+/* User defined function that will validate the image file as being in the correct format*/
 function validateImageFile($file, $ext) {
   foreach ($ext as $dif) {
     $extension = $dif[0];

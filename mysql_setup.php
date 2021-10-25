@@ -12,6 +12,7 @@
         name text not null,
         email text not null,
         password text not null,
+        role text not null,
         primary key (uid));");
 
     /* Setting up location table */
