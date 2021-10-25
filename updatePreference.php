@@ -35,14 +35,15 @@ if (isset($_POST['indoor'])) { /// validate the email coming in
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="upload.php">Upload</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-between"  id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto">
-                  <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
-                  <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
+                  <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
                         echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";

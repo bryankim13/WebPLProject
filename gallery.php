@@ -28,15 +28,27 @@ session_start();
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
-              <a class="navbar-brand px-3 mx-auto" href="index.html">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
+              <a class="navbar-brand px-3 mx-auto" href="upload.php">Upload</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-between"  id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto">
-                  <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
-                  <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
+                  <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
+                <?php
+                    if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
+                        echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
+                        echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
+
+                    }
+                    else{
+                        echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                    }
+                ?>
                 </div>
               </div>
             </nav> 
@@ -80,8 +92,14 @@ session_start();
                             <div class="carousel-inner">
                               <?php
                                 $res2 = $mysqli->query("select * from picture");
+                                $index2 = 0;
                                 while ($data2 = $res2->fetch_assoc()) {
-                                  echo "<div class=\"carousel-item active\"><img class=\"d-block w-100\" src=\"images/{$data2['img_dir']}\" alt=\"{$data2['name']}\"></div>";
+                                  if ($index2 == 0) {
+                                    echo "<div class=\"carousel-item active\"><img class=\"d-block w-100\" src=\"images/{$data2['img_dir']}\" alt=\"{$data2['name']}\"></div>";
+                                  } else {
+                                    echo "<div class=\"carousel-item\"><img class=\"d-block w-100\" src=\"images/{$data2['img_dir']}\" alt=\"{$data2['name']}\"></div>";
+                                  }
+                                  $index2 += 1;
                                 }
                               ?>
                             </div>

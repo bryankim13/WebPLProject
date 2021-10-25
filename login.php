@@ -80,9 +80,20 @@ if (isset($_POST["email"])) { /// validate the email coming in
               </button>
               <div class="collapse navbar-collapse justify-content-between"  id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto">
-                  <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
-                  <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
+                  <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
+                <?php
+                    if (isset($_SESSION["email"])) {
+                        echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
+                        echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
+                        echo "<a class='nav-item nav-link active' href='logout.php'>Log Out</a>";
+
+                    }
+                    else{
+                        echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
+                    }
+                ?>
                 </div>
               </div>
             </nav> 

@@ -41,9 +41,9 @@ session_start();
               </button>
               <div class="collapse navbar-collapse justify-content-between"  id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto">
-                  <a class="nav-item nav-link active" href="gallery.html">Gallery</a>
-                  <a class="nav-item nav-link active" href="locations.html">Locations</a>
-                  <a class="nav-item nav-link active" href="suggestions.html">Suggestions</a>
+                  <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
+                  <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class="nav-item nav-link active" href="suggestions.php">Suggestions</a>
                   <?php
                     if (isset($_SESSION["email"])) {
                         echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
@@ -97,7 +97,7 @@ session_start();
                                 another.  If you've found the perfect spot and idea.  Click the button below
                                 to share your ideas to inspire other photographers.  Help each other out!
                             </p>
-                            <p class="text-center"><a class="btn btn-primary" href="suggestions.html" role="button">Create Suggestion</a></p>
+                            <p class="text-center"><a class="btn btn-primary" href="suggestions.php" role="button">Create Suggestion</a></p>
                         </div>
                     </div>
                 </div>
@@ -111,13 +111,37 @@ session_start();
                               </h2>
                                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
                                     <div class="carousel-indicators">
-                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                      <?php
+                                        $res = $mysqli->query("select * from picture limit 4");
+                                        $index = 0;
+                                        while ($data = $res->fetch_assoc()) {
+                                          if ($index == 0) {
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"0\" class=\"active\" aria-current=\"true\" aria-label=\"Slide {$index}\"></button>";
+                                          } else {
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"1\" aria-label=\"Slide {$index}\"></button>";
+                                          }
+                                          $index += 1;
+                                        }
+                                      ?>
+                                      <!-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button> -->
                                     </div>
                                     <div class="carousel-inner">
-                                      <div class="carousel-item active">
+                                    <?php
+                                        $res = $mysqli->query("select * from picture limit 4");
+                                        $index = 0;
+                                        while ($data = $res->fetch_assoc()) {
+                                          if ($index == 0) {
+                                            echo "<div class=\"carousel-item active\"><img src=\"images/{$data['img_dir']}\" class=\"d-block w-100 pic-dim\" alt=\"{$data['name']}\"></div>";
+                                          } else {
+                                            echo "<div class=\"carousel-item\"><img src=\"images/{$data['img_dir']}\" class=\"d-block w-100 pic-dim\" alt=\"{$data['name']}\"></div>";
+                                          }
+                                          $index += 1;
+                                        }
+                                      ?>
+                                      <!-- <div class="carousel-item active">
                                         <img src="images/aesthetic.png" class="d-block w-100 pic-dim" alt="nature">
                                       </div>
                                       <div class="carousel-item">
@@ -128,7 +152,7 @@ session_start();
                                       </div>
                                       <div class="carousel-item">
                                         <img src="images/sign.jpg" class="d-block w-100 pic-dim" alt="sign">
-                                      </div>
+                                      </div> -->
                                     </div>
                           
                           
@@ -146,7 +170,7 @@ session_start();
                             <p class="text-center">
                                 Want to view more pictures?  View our image gallery.
                             </p>
-                            <p class="text-center"><a class="btn btn-primary" href="gallery.html" role="button">Gallery</a></p>
+                            <p class="text-center"><a class="btn btn-primary" href="gallery.php" role="button">Gallery</a></p>
                         </div>
                     </div>
                 </div>
