@@ -186,8 +186,17 @@ session_start();
                                 submitted by your peers to discover some hidden gem spots around Charlottesville.  We've listed
                                 a few of the more popular locations here but click the button below to view all suggestions!
                             </p>
-                            <table class="center">
-                                <tr class="text-center">
+                            <!-- <table class="center"> -->
+                            <?php
+                              $stmt = $mysqli->query("select * from location;");
+                              $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
+                              echo "<table class=\"center\"><tr class=\"text-center\"><td><center><b>Place</b></center></td><td><center><b>Address</b></center></td><td><center><b>Activity</b></center></td></tr><br>";
+                              foreach ($data_table as $row) {
+                                echo "<tr><td><center>" . $row['name'] . "</center></td><td><center>" . $row['address'] . "</center></td><td><center>" . $row['activity'] . "</center></td></tr><br>";
+                              }
+                              echo "</table>";
+                            ?>
+                                <!-- <tr class="text-center">
                                   <th>Location</th>
                                   <th>Category</th>
                                 </tr>
@@ -215,9 +224,9 @@ session_start();
                                   <td>The Corner</td>
                                   <td>Lifestyle</td>
                                 </tr>
-                            </table>
+                            </table> -->
                             <br>
-                            <p class="text-center"><a class="btn btn-primary" href="locations.html" role="button">Locations</a></p>
+                            <p class="text-center"><a class="btn btn-primary" href="locations.php" role="button">Locations</a></p>
                         </div>
                     </div>
                 </div>
