@@ -7,6 +7,10 @@ $user = null;
 
 // Join session or start one
 session_start();
+if(isset($_POST["submit"])){
+  $message = $_FILES["file"]["name"];
+  
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,17 +59,58 @@ session_start();
           <div>
             <h1>Upload your pictures here!<h1>
           <div>
-          <form method = "post" action = "" enctype = "multipart/form-data">
-               <label for="description" class="form-label">Description:</label>
-               <input type="description" class="form-control" id="description" name="description"/>
-               <br>
-               <input type = "file" name = "file" value = ""/>
-               <div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-               </div>
-          </form>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    </body>
+          <?php
+                    if (!empty($message)) {
+                        echo "<div class='alert alert-danger'>$message</div>";
+                    }
+          ?>
+          <form method = "post" enctype = "multipart/form-data">
+            <div class="mb-3">
+              <label for="indoor">Indoors or Outdoors</label>
+              <select class="form-control" id="indoor" name="indoor" required>
+                  <option>Indoors</option>
+                  <option>Outdoors</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="time">Time</label>
+              <select class="form-control" id="time" name="time" required>
+                  <option>Day</option>
+                  <option>Night</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="cost">Cost</label>
+              <select class="form-control" id="cost" name="cost" required>
+                <option>Free</option>
+                  <option>Cheap</option>
+                  <option>Moderate</option>
+                  <option>Expensive</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="activity">Activity</label>
+              <select class="form-control" id="activity" name="activity" required>
+                  <option>Food</option>
+                  <option>Landscape</option>
+                  <option>Events</option>
+                  <option>Profile Pictures</option>
+                  <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description:</label>
+              <input type="description" class="form-control" id="description" name="description"/>
+              <br>
+              <input type = "file" name = "file" value = ""/>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
 </html>
