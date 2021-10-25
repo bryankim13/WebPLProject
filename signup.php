@@ -29,8 +29,8 @@ if (isset($_POST["email"])) { /// validate the email coming in
         $error_msg2 = "Enter a valid email";
     }
     else {
-        $insert = $mysqli->prepare("insert into user (name, email, password) values (?, ?, ?);");
-        $insert->bind_param("sss", $_POST["name"], $_POST["email"], $hash);
+        $insert = $mysqli->prepare("insert into user (name, email, password, role) values (?, ?, ?, ?);");
+        $insert->bind_param("ssss", $_POST["name"], $_POST["email"], $hash, $_POST["role"]);
         if (!$insert->execute()) {
             $error_msg = "Error creating new user";
             } 
@@ -106,6 +106,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required/>
                     </div>
+                    <input type="hidden" id="role" name="role" value="user">
                     <div class="text-center">                
                     <button type="submit" class="btn btn-primary">Create Account</button>
                     <a href="login.php" class="btn btn-primary">Have an Account? Sign in</a>

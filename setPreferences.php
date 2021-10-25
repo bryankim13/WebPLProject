@@ -77,7 +77,7 @@ else {
         
         <div class="container" style="margin-top: 15px;">
             <div class="row col-xs-8 justify-content-center">
-                <h1>CaKlik</h1>
+                <h1>KaClik</h1>
                 <p>Let the clicks begin</p>
             </div>
             <div class="row justify-content-center">
