@@ -142,6 +142,7 @@ if(isset($_POST["upload"])){
               <input type="description" class="form-control" id="description" name="description"/>
               <br>
               <input type = "file" name = "file" value = ""/>
+              <p style="font-size: 15px">FILE SIZES MUST BE LESS THAN 1MB</p>
             </div>
             <div class="mb-3">
               <button type="submit" name="upload" class="btn btn-primary">Upload</button>

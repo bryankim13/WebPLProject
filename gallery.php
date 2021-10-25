@@ -74,7 +74,7 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
                   $quer = getPictureArr($mysqli);
                   $index = 0;
                   while ($data = $quer->fetch_assoc()) { // php used to echo out each picture in the array retrieved from the function
-                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"</div>";
+                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"></div>";
                     $index += 1;
                   }
                 ?>
