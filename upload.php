@@ -7,6 +7,7 @@ $user = null;
 
 // Join session or start one
 session_start();
+
 if(isset($_POST["upload"])){
   $filename = $_FILES["file"]["name"];
   $tempname = $_FILES["file"]["tmp_name"];
