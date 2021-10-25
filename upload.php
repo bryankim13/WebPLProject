@@ -102,25 +102,25 @@ if(isset($_POST["upload"])){
           <form method = "post" action="upload.php" enctype = "multipart/form-data">
             <div class="mb-3">
               <label for="name" class="form-label">File Name:</label>
-              <input type="name" class="form-control" id="name" name="name"/>
+              <input type="text" class="form-control" id="name" name="name"/>
             </div>
             <div class="mb-3">
               <label for="indoor">Indoors or Outdoors</label>
-              <select class="form-control" id="indoor" name="indoor" required>
+              <select class="form-control" id="indoor" name="indoor" required size="2">
                   <option>Indoors</option>
                   <option>Outdoors</option>
               </select>
             </div>
             <div class="mb-3">
               <label for="time">Time</label>
-              <select class="form-control" id="time" name="time" required>
+              <select class="form-control" id="time" name="time" required size="2">
                   <option>Day</option>
                   <option>Night</option>
               </select>
             </div>
             <div class="mb-3">
               <label for="cost">Cost</label>
-              <select class="form-control" id="cost" name="cost" required>
+              <select class="form-control" id="cost" name="cost" required size="4">
                 <option>Free</option>
                   <option>Cheap</option>
                   <option>Moderate</option>
@@ -129,7 +129,7 @@ if(isset($_POST["upload"])){
             </div>
             <div class="mb-3">
               <label for="activity">Activity</label>
-              <select class="form-control" id="activity" name="activity" required>
+              <select class="form-control" id="activity" name="activity" required size="5">
                   <option>Food</option>
                   <option>Landscape</option>
                   <option>Events</option>
@@ -139,18 +139,16 @@ if(isset($_POST["upload"])){
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Description:</label>
-              <input type="description" class="form-control" id="description" name="description"/>
+              <input type="text" class="form-control" id="description" name="description"/>
               <br>
-              <input type = "file" name = "file" value = ""/>
+              <input type = "file" name = "file"/>
               <p style="font-size: 15px">FILE SIZES MUST BE LESS THAN 1MB</p>
             </div>
             <div class="mb-3">
               <button type="submit" name="upload" class="btn btn-primary">Upload</button>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
+          </form>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
