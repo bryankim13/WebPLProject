@@ -75,21 +75,21 @@ if (isset($_POST['indoor'])) { /// validate the email coming in
                 <form action="updatePreference.php" method="post">
                     <div class="mb-3">
                     <label for="indoor">Indoors or Outdoors</label>
-                    <select class="form-control" id="indoor" name="indoor" required>
+                    <select class="form-control" id="indoor" name="indoor" required size="2">
                         <option>Indoors</option>
                         <option>Outdoors</option>
                     </select>
                     </div>
                     <div class="mb-3">
                     <label for="time">Time</label>
-                    <select class="form-control" id="time" name="time" required>
+                    <select class="form-control" id="time" name="time" required size="2">
                         <option>Day</option>
                         <option>Night</option>
                     </select>
                     </div>
                     <div class="mb-3">
                     <label for="cost">Cost</label>
-                    <select class="form-control" id="cost" name="cost" required>
+                    <select class="form-control" id="cost" name="cost" required size="4">
                         <option>Free</option>
                         <option>Cheap</option>
                         <option>Moderate</option>
@@ -98,7 +98,7 @@ if (isset($_POST['indoor'])) { /// validate the email coming in
                     </div>
                     <div class="mb-3">
                     <label for="activity">Activity</label>
-                    <select class="form-control" id="activity" name="activity" required>
+                    <select class="form-control" id="activity" name="activity" required size="5">
                         <option>Food</option>
                         <option>Landscape</option>
                         <option>Events</option>
