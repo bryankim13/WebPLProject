@@ -26,8 +26,9 @@ if(isset($_POST["upload"])){
   $tempname = $_FILES["file"]["tmp_name"];
   $extensions = array (['jpg'], ['jpeg'], ['jfif'], ['png'], ['gif']);
   $folder = "images/".$filename;
+  $image_size = filesize($tempname);
   if (validateImageFile($filename, $extensions) == true) {
-    if ($_FILES['file']['size'] > 1000000) {
+    if ($image_size > 1000000) {
       $err_msg = "File Size To Large!";
     }
     else{
@@ -40,7 +41,7 @@ if(isset($_POST["upload"])){
         $message = "UPLOAD FOR ". $filename . " SUCCESSFUL!";
       }
       else{
-        $err_msg = "FAILED MOVE " . $filename;
+        $err_msg = "FAILED MOVE " . $filename . "and" . $_FILES['file']['size'];
       }
     }
   } else {
