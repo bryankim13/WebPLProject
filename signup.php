@@ -63,7 +63,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <?php
               if (isset($_SESSION["email"])) {
-                echo "<a class=\"navbar-brand px-3 mx-auto\" href=\"upload.php\">Upload</a>"
+                echo "<a class=\"navbar-brand px-3 mx-auto\" href=\"upload.php\">Upload</a>";
               }
               ?>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
