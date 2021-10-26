@@ -27,16 +27,21 @@ if(isset($_POST["upload"])){
   $extensions = array (['jpg'], ['jpeg'], ['jfif'], ['png'], ['gif']);
   $folder = "images/".$filename;
   if (validateImageFile($filename, $extensions) == true) {
-    $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
-    $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
-    if(!$stmt->execute()){
-      $err_msg = "FAILED TO UPLOAD ". $filename;
-    }
-    if(move_uploaded_file($tempname, $folder)){
-      $message = "UPLOAD FOR ". $filename . " SUCCESSFUL!";
+    if ($_FILES['file']['size'] > 1000000) {
+      $err_msg = "File Size To Large!";
     }
     else{
-      $err_msg = "FAILED MOVE " . $filename;
+      $stmt = $mysqli->prepare("insert into picture (uid, indoor, time, money, activity, name, img_dir, description) values (?,?,?,?,?,?,?,?);");
+      $stmt->bind_param("isssssss", $_SESSION["uid"], $_POST["indoor"],$_POST["time"],$_POST["cost"],$_POST["activity"],$_POST["name"],$filename,$_POST["description"]);
+      if(!$stmt->execute()){
+        $err_msg = "FAILED TO UPLOAD ". $filename;
+      }
+      if(move_uploaded_file($tempname, $folder)){
+        $message = "UPLOAD FOR ". $filename . " SUCCESSFUL!";
+      }
+      else{
+        $err_msg = "FAILED MOVE " . $filename;
+      }
     }
   } else {
     $err_msg = "NOT A VALID IMAGE FILE";
