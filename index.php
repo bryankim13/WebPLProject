@@ -8,12 +8,13 @@ $user = null;
 // Join session or start one
 session_start();
 ?>
-<!-- sources: 
+<!--
+    link to website:
+      Link to index.php https://cs4640.cs.virginia.edu/bjk3yf/project/ 
+    sources: 
       https://www.w3schools.com/howto/howto_css_modal_images.asp
       https://css-tricks.com/creating-a-modal-image-gallery-with-bootstrap-components/  
       https://getbootstrap.com/docs/5.1/getting-started/introduction/ - for carousel, navbar, cards, etc.
-      https://cs4640.cs.virginia.edu/pso3td/project/
-      https://storage.googleapis.com/kaclik-demo/WebPLProject/index.html
       https://www.youtube.com/watch?v=1NiJcZrPHvA&ab_channel=TechWorldwithNana
     -->
     <!DOCTYPE html>
