@@ -23,7 +23,7 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <title>KaClik!</title>
-        <meta name="author" content="Bryan Kim : bjk3yf worked on gallery page and home page, Paul Ok : pso3td worked on suggestion page and home page">
+        <meta name="author" content="Bryan Kim : bjk3yf worked on upload and profile, Paul Ok : pso3td worked on suggestion forms and gallery, everything else was done together">
         <meta name="description" content="Providing potential photoshoot locations to users">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <meta name="keywords" content="Photos, camera, location, suggestion, scenery">        
@@ -33,6 +33,7 @@ session_start();
     </head>  
     <body>
     <header>
+      <!-- Link to index.php https://cs4640.cs.virginia.edu/bjk3yf/project/ -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <a class="navbar-brand px-3 mx-auto" href="upload.php">Upload</a>
