@@ -123,9 +123,9 @@ session_start();
                                         $index = 0;
                                         while ($data = $res->fetch_assoc()) {
                                           if ($index == 0) {
-                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"0\" class=\"active\" aria-current=\"true\" aria-label=\"Slide {$index}\"></button>";
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"{$index}\" class=\"active\" aria-current=\"true\" aria-label=\"Slide {$index}\"></button>";
                                           } else {
-                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"1\" aria-label=\"Slide {$index}\"></button>";
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"{$index}\" aria-label=\"Slide {$index}\"></button>";
                                           }
                                           $index += 1;
                                         }
