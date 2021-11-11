@@ -87,15 +87,19 @@ session_start();
             function hideProfile(){
                 var persId = document.getElementById("personalId");
                 var profPref = document.getElementById("profPref");
+                
+                vis = () => "visible"; //Arrow Function
+                hid = () => "hidden";
 
-                if(persId.style.visibility == "hidden"){
-                    persId.style.visibility = "visible";
-                    profPref.style.visibility = "visible";
+
+                if(persId.style.visibility == hid()){
+                    persId.style.visibility = vis();
+                    profPref.style.visibility = vis();
 
                 }
                 else{
-                    persId.style.visibility = "hidden";
-                    profPref.style.visibility = "hidden";
+                    persId.style.visibility = hid();
+                    profPref.style.visibility = hid();
 
                 }
             }

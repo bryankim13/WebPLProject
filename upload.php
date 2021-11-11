@@ -150,10 +150,37 @@ if(isset($_POST["upload"])){
               <p style="font-size: 15px">FILE SIZES MUST BE LESS THAN 1MB</p>
             </div>
             <div class="mb-3">
-              <button type="submit" name="upload" class="btn btn-primary">Upload</button>
+              <button type="submit" id="submit" name="upload" class="btn btn-primary">Upload</button>
             </div>
           </form>
         </div>
+    <script>
+      function fieldCheck(){
+                var fName = document.getElementById("name");
+                var description = document.getElementById("description");
+                var subButton = document.getElementById("submit");
+
+                if(fName.value.length < 1){
+                    fName.classList.add("is-invalid");
+                    if(description.value.length < 1){
+                        description.classList.add("is-invalid");
+                    }
+                    subButton.disabled = true;
+                } else{
+                    fName.classList.remove("is-invalid");
+                    if(description.value.length > 0){
+                        description.classList.remove("is-invalid");
+                        subButton.disabled = false;
+                    }
+                    else{
+                        description.classList.add("is-invalid");
+                        subButton.disabled = true;
+                    }
+                }
+            }
+            document.getElementById("name").addEventListener("keyup", fieldCheck);
+            document.getElementById("description").addEventListener("keyup", fieldCheck);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

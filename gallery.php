@@ -121,20 +121,26 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
             pic.style.filter = "blur(4px)";
             pic.style.transition = ".45s";
           };
-          function fadeOff(){
-            var pic = document.getElementById(this.id);
-            pic.style.filter = "blur(0px)";
-            pic.style.transition = ".45s";
-          };
+          // function fadeOff(){
+          //   var pic = document.getElementById(this.id);
+          //   pic.style.filter = "blur(0px)";
+          //   pic.style.transition = ".45s";
+          // };
           var gallery = document.getElementById("gallery");
           // console.log(gallery.childNodes[3].childNodes[0].id);
-          console.log(gallery.childNodes[3].nodeName=="DIV");
 
           for(var i = 0; i < gallery.childNodes.length; i++){
-            if(gallery.childNodes[i].nodeName=="DIV"){
-              console.log(gallery.childNodes[i].childNodes[0].id);
-              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseover", fadeOn);
-              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseout", fadeOff);
+            if(gallery.childNodes[i].nodeName=="DIV"){ //within gallery are divs. The photos are in the divs so we have to dig a little deeper
+              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseover", function (){
+                var pic = document.getElementById(this.id);
+                pic.style.filter = "blur(4px)";
+                pic.style.transition = ".45s";
+              });
+              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseout", function (){  //Anonymous function for fade in and out
+                var pic = document.getElementById(this.id);
+                pic.style.filter = "blur(0px)";
+                pic.style.transition = ".45s";
+              });
             }
             // document.getElementById(gallery.childNodes[i].id).addEventListener("mouseover", fadeOn);
           }
