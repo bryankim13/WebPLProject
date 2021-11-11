@@ -109,11 +109,40 @@ session_start();
                         <option value="other">Other</option>
                     </select>
                 </div>
-
-                <button type="submit" style="color: white; margin: 5px 3px; background-color: blue">Submit</button>
+                <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
+        <script>
+            function locCheck(){
+                var locName = document.getElementById("location");
+                var addy = document.getElementById("address");
+                var subButton = document.getElementById("submit");
+
+
+                if(locName.value.length < 1){
+                    locName.classList.add("is-invalid");
+                    if(addy.value.length < 1){
+                        addy.classList.add("is-invalid");
+                    }
+                    subButton.disabled = true;
+                } else{
+                    locName.classList.remove("is-invalid");
+                    if(addy.value.length > 0){
+                        addy.classList.remove("is-invalid");
+                        subButton.disabled = false;
+                    }
+                    else{
+                        addy.classList.add("is-invalid");
+                        subButton.disabled = true;
+
+                    }
+                }
+            }
+            document.getElementById("location").addEventListener("keyup", locCheck);
+            document.getElementById("address").addEventListener("keyup", locCheck);
+
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

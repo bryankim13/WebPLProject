@@ -52,36 +52,59 @@ session_start();
               </div>
             </nav> 
         </header>
-        <div class="container">
-            <h1>Your Profile</h1>
-            <div class="m-3">
-            <h2>Information: </h2>
-                <?php
-                    echo "<p>Name: ".$_SESSION['name'] . "</p>";
-                    echo "<p>Email: ".$_SESSION['email'] . "</p>";
-                ?>    
-            <h2>Preferences</h2>
-                <?php
-                    $stmt = $mysqli->prepare("select * from preference where uid = ?;");
-                    $stmt->bind_param("i", $_SESSION["uid"]);
-                    if (!$stmt->execute()) {
-                        $message = "Error getting preferences";
-                    }
-                    else{
-                        $res = $stmt->get_result();
-                        $data = $res->fetch_all(MYSQLI_ASSOC);
-                        echo "<p>Location Type: ".$data[0]['indoor'] . "</p>";
-                        echo "<p>Time of Day: ".$data[0]['time'] . "</p>";
-                        echo "<p>Cost: ".$data[0]['money'] . "</p>";
-                        echo "<p>Activity: ".$data[0]['activity'] . "</p>";
-                    }
-                    
-
-
-
-                ?>  
+        <div class="container justify-content-center">
+            <h1 style="font-size:45px;">Your Profile</h1>
+            <div class="m-3 flex text-center">
+                <h2>Information: </h2>
+                    <div id="personalId" style="visibility:hidden;">
+                        <?php
+                            echo "<p>Name: ".$_SESSION['name'] . "</p>";
+                            echo "<p>Email: ".$_SESSION['email'] . "</p>";
+                        ?>    
+                    </div>
+                <h2>Preferences</h2>
+                <div id="profPref" style="visibility:hidden;">
+                    <?php
+                        $stmt = $mysqli->prepare("select * from preference where uid = ?;");
+                        $stmt->bind_param("i", $_SESSION["uid"]);
+                        if (!$stmt->execute()) {
+                            $message = "Error getting preferences";
+                        }
+                        else{
+                            $res = $stmt->get_result();
+                            $data = $res->fetch_all(MYSQLI_ASSOC);
+                            echo "<p>Location Type: ".$data[0]['indoor'] . "</p>";
+                            echo "<p>Time of Day: ".$data[0]['time'] . "</p>";
+                            echo "<p>Cost: ".$data[0]['money'] . "</p>";
+                            echo "<p>Activity: ".$data[0]['activity'] . "</p>";
+                        }
+                    ?>  
+                </div>
+                <button id="persButt" class="btn btn-primary">Toggle your privacy</button>
             </div>
         </div>
+        <script>
+            function hideProfile(){
+                var persId = document.getElementById("personalId");
+                var profPref = document.getElementById("profPref");
+                
+                vis = () => "visible"; //Arrow Function
+                hid = () => "hidden";
+
+
+                if(persId.style.visibility == hid()){
+                    persId.style.visibility = vis();
+                    profPref.style.visibility = vis();
+
+                }
+                else{
+                    persId.style.visibility = hid();
+                    profPref.style.visibility = hid();
+
+                }
+            }
+            document.getElementById("persButt").addEventListener("click", hideProfile);
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>

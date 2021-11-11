@@ -16,6 +16,9 @@ session_start();
       https://css-tricks.com/creating-a-modal-image-gallery-with-bootstrap-components/  
       https://getbootstrap.com/docs/5.1/getting-started/introduction/ - for carousel, navbar, cards, etc.
       https://www.youtube.com/watch?v=1NiJcZrPHvA&ab_channel=TechWorldwithNana
+      https://developer.mozilla.org/en-US/docs/Web/CSS/filter - blurring effect
+      Javascript 
+      https://www.w3schools.com/jsref/prop_node_childnodes.asp - for getting child names
     -->
     <!DOCTYPE html>
 <html lang="en">
@@ -123,9 +126,9 @@ session_start();
                                         $index = 0;
                                         while ($data = $res->fetch_assoc()) {
                                           if ($index == 0) {
-                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"0\" class=\"active\" aria-current=\"true\" aria-label=\"Slide {$index}\"></button>";
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"{$index}\" class=\"active\" aria-current=\"true\" aria-label=\"Slide {$index}\"></button>";
                                           } else {
-                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"1\" aria-label=\"Slide {$index}\"></button>";
+                                            echo "<button type=\"button\" data-bs-target=\"#carouselExampleCaptions\" data-bs-slide-to=\"{$index}\" aria-label=\"Slide {$index}\"></button>";
                                           }
                                           $index += 1;
                                         }
