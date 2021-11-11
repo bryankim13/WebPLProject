@@ -62,10 +62,51 @@
         <?php
             $stmt = $mysqli->query("select * from location;");
             $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
-            foreach ($data_table as $row) {
-                $file = json_encode($row);
-                echo var_dump(json_decode($file, true));
+            $stmt2 = $mysqli->prepare("select indoor, time, money, activity from preference where uid = ?;");
+            $stmt2->bind_param("i", $_SESSION['uid']);
+            if (!$stmt2->execute()) {
+                $message = "Error getting uid";
             }
+            else {
+                $res = $stmt2->get_result();
+                $data = $res->fetch_all(MYSQLI_ASSOC);
+            }
+            $best = 0;
+            $best_name = "";
+            echo "<div style='text-align: center'><h4>Scroll to the bottom to see which places best matches your preferences!</h4></div>";
+            foreach ($data_table as $row) {
+                $temp = 0;
+                $file = json_encode($row);
+                $obj = json_decode($file);
+                // echo "<h3>JSON Format</h3>";
+                // echo var_dump($obj);
+                echo "<script type='text/javascript'>
+                        var data_obj = {name: '" . $obj->{'name'} . "', address: '" . $obj->{'address'} . "', inout: '" . $obj->{'indoor'} . "', time: '" . $obj->{'time'} . "', money: '" . $obj->{'money'} . "', activity: '" . $obj->{'activity'} . "'};
+                      </script>";
+                echo "<div style='text-align: center'><br><h3><script type='text/javascript'>document.write(data_obj.name)</script> <br></h3>";
+                echo  "<b>Address:</b> <script type='text/javascript'>document.write(data_obj.address)</script> <br>";
+                echo  "<b>In/Out:</b> <script type='text/javascript'>document.write(data_obj.inout)</script> <br>";
+                echo  "<b>Time:</b> <script type='text/javascript'>document.write(data_obj.time)</script> <br>";
+                echo  "<b>Money:</b> <script type='text/javascript'>document.write(data_obj.money)</script> <br>";
+                echo  "<b>Activity:</b> <script type='text/javascript'>document.write(data_obj.activity)</script> <br></div>";
+                if ($data[0]['indoor'] === $obj->{'indoor'}) {
+                    $temp = $temp + 1;
+                }
+                if ($data[0]['time'] === $obj->{'time'}) {
+                    $temp = $temp + 1;
+                }
+                if ($data[0]['money'] === $obj->{'money'}) {
+                    $temp = $temp + 1;
+                } 
+                if ($data[0]['activity'] === $obj->{'activity'}) {
+                    $temp = $temp + 1;
+                }
+                if ($temp >= $best) {
+                    $best = $temp;
+                    $best_name = $obj->{'name'};
+                }
+            }
+            echo "<div style='text-align: center'><h4>Based on your preferences, <b>" . $best_name . "</b> would be a good place to check out.</h4></div>";
         ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
