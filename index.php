@@ -16,6 +16,9 @@ session_start();
       https://css-tricks.com/creating-a-modal-image-gallery-with-bootstrap-components/  
       https://getbootstrap.com/docs/5.1/getting-started/introduction/ - for carousel, navbar, cards, etc.
       https://www.youtube.com/watch?v=1NiJcZrPHvA&ab_channel=TechWorldwithNana
+      https://developer.mozilla.org/en-US/docs/Web/CSS/filter - blurring effect
+      Javascript 
+      https://www.w3schools.com/jsref/prop_node_childnodes.asp - for getting child names
     -->
     <!DOCTYPE html>
 <html lang="en">

@@ -74,7 +74,7 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
                   $quer = getPictureArr($mysqli);
                   $index = 0;
                   while ($data = $quer->fetch_assoc()) { // php used to echo out each picture in the array retrieved from the function
-                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"></div>";
+                    echo "<div class=\"col-12 col-sm-6 col-lg-3\"><img class=\"w-100 rounded-3\" id=\"pics{$index}\" src=\"images/{$data['img_dir']}\" data-bs-target=\"#carouselExample\" data-bs-slide-to=\"{$index}\"></div>";
                     $index += 1;
                   }
                 ?>
@@ -115,7 +115,41 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
               </div>
         </div>
 
+        <script>
+          function fadeOn(){
+            var pic = document.getElementById(this.id);
+            pic.style.filter = "blur(4px)";
+            pic.style.transition = ".45s";
+          };
+          function fadeOff(){
+            var pic = document.getElementById(this.id);
+            pic.style.filter = "blur(0px)";
+            pic.style.transition = ".45s";
+          };
+          var gallery = document.getElementById("gallery");
+          // console.log(gallery.childNodes[3].childNodes[0].id);
+          console.log(gallery.childNodes[3].nodeName=="DIV");
 
+          for(var i = 0; i < gallery.childNodes.length; i++){
+            if(gallery.childNodes[i].nodeName=="DIV"){
+              console.log(gallery.childNodes[i].childNodes[0].id);
+              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseover", fadeOn);
+              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseout", fadeOff);
+            }
+            // document.getElementById(gallery.childNodes[i].id).addEventListener("mouseover", fadeOn);
+          }
+
+          // document.getElementById("pics1").addEventListener("mouseover", function (){
+          //   var pic = document.getElementById("pics1");
+          //   pic.style.filter = "blur(4px)";
+          //   pic.style.transition = ".45s";
+          // });
+          // document.getElementById("pics1").addEventListener("mouseout", function (){
+          //   var pic = document.getElementById("pics1");
+          //   pic.style.filter = "blur(0px)";
+          //   pic.style.transition = ".45s";
+          // });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
