@@ -68,10 +68,20 @@ session_start();
         $stmt = $mysqli->query("select * from location;");
         $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
         echo "<table><tr><td><center><b>Location Name</b></center></td><td><center><b>Address</b></center></td><td><center><b>In/Out</b></center></td><td><center><b>Time</b></center></td><td><center><b>Money</b></center></td><td><center><b>Activity</b></center></td></tr><br>";
+        echo "<script type='text/javascript'>
+                var data_list = [];
+              </script>";
         foreach ($data_table as $row) {
+          echo "<script type='text/javascript'>
+                  var obj = JSON.stringify({ name: '" . $row['name'] . "', address: '" . $row['address'] . "', inout: '" . $row['indoor'] . "', time: '" . $row['time'] . "', money: '" . $row['money'] . "', activity: '" . $row['activity'] . "'});
+                  data_list.push(obj);
+                </script>";
           echo "<tr><td><center>" . $row['name'] . "</center></td><td><center>" . $row['address'] . "</center></td><td><center>" . $row['indoor'] . "</center></td><td><center>" . $row['time'] . "</center></td><td><center>" . $row['money'] . "</center></td><td><center>" . $row['activity'] . "</center></td></tr><br>";
         }
         echo "</table>";
+        echo "<script type='text/javascript'>
+                console.log(data_list);
+              </script>";
         ?>
         </div>
 
