@@ -23,6 +23,7 @@ session_start();
       Stackoverflow
       https://www.w3schools.com/php/php_ajax_livesearch.asp
       https://www.cloudways.com/blog/live-search-php-mysql-ajax/
+      https://www.w3schools.com/jquery/ajax_ajax.asp
     -->
     <!DOCTYPE html>
 <html lang="en">
