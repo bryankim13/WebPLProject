@@ -26,6 +26,7 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
         <meta name="keywords" content="Photos, camera, location, suggestion, scenery">        
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/gallery.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     </head>  
     <body>
@@ -121,29 +122,32 @@ function getPictureArr($mysqli){ //function to do this query, frequently used on
             pic.style.filter = "blur(4px)";
             pic.style.transition = ".45s";
           };
-          // function fadeOff(){
-          //   var pic = document.getElementById(this.id);
-          //   pic.style.filter = "blur(0px)";
-          //   pic.style.transition = ".45s";
-          // };
-          var gallery = document.getElementById("gallery");
-          // console.log(gallery.childNodes[3].childNodes[0].id);
+          function fadeOff(){
+            var pic = document.getElementById(this.id);
+            pic.style.filter = "blur(0px)";
+            pic.style.transition = ".45s";
+          };
+          $("#gallery").children("div").children("img").mouseover(fadeOn);
+          $("#gallery").children("div").children("img").mouseout(fadeOff);
 
-          for(var i = 0; i < gallery.childNodes.length; i++){
-            if(gallery.childNodes[i].nodeName=="DIV"){ //within gallery are divs. The photos are in the divs so we have to dig a little deeper
-              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseover", function (){
-                var pic = document.getElementById(this.id);
-                pic.style.filter = "blur(4px)";
-                pic.style.transition = ".45s";
-              });
-              document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseout", function (){  //Anonymous function for fade in and out
-                var pic = document.getElementById(this.id);
-                pic.style.filter = "blur(0px)";
-                pic.style.transition = ".45s";
-              });
-            }
-            // document.getElementById(gallery.childNodes[i].id).addEventListener("mouseover", fadeOn);
-          }
+          // var gallery = document.getElementById("gallery");
+          // // console.log(gallery.childNodes[3].childNodes[0].id);
+
+          // for(var i = 0; i < gallery.childNodes.length; i++){
+          //   if(gallery.childNodes[i].nodeName=="DIV"){ //within gallery are divs. The photos are in the divs so we have to dig a little deeper
+          //     document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseover", function (){
+          //       var pic = document.getElementById(this.id);
+          //       pic.style.filter = "blur(4px)";
+          //       pic.style.transition = ".45s";
+          //     });
+          //     document.getElementById(gallery.childNodes[i].childNodes[0].id).addEventListener("mouseout", function (){  //Anonymous function for fade in and out
+          //       var pic = document.getElementById(this.id);
+          //       pic.style.filter = "blur(0px)";
+          //       pic.style.transition = ".45s";
+          //     });
+          //   }
+          //   // document.getElementById(gallery.childNodes[i].id).addEventListener("mouseover", fadeOn);
+          // }
 
           // document.getElementById("pics1").addEventListener("mouseover", function (){
           //   var pic = document.getElementById("pics1");

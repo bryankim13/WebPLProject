@@ -19,6 +19,10 @@ session_start();
       https://developer.mozilla.org/en-US/docs/Web/CSS/filter - blurring effect
       Javascript 
       https://www.w3schools.com/jsref/prop_node_childnodes.asp - for getting child names
+      https://www.youtube.com/watch?v=wCsPAquMNVw&ab_channel=Webslesson 
+      Stackoverflow
+      https://www.w3schools.com/php/php_ajax_livesearch.asp
+      https://www.cloudways.com/blog/live-search-php-mysql-ajax/
     -->
     <!DOCTYPE html>
 <html lang="en">

@@ -63,7 +63,7 @@ if (isset($_POST['indoor'])) { /// validate the email coming in
 
         <div class="container" style="margin-top: 15px;">
             <div class="row col-xs-8 justify-content-center">
-                Update your Preferences!
+                <h1 class="text-center">Update your Preferences!<h1>
             </div>
             <div class="row justify-content-center">
                 <div class="col-4">
@@ -110,9 +110,32 @@ if (isset($_POST['indoor'])) { /// validate the email coming in
                     <button type="submit" class="btn btn-primary">Submit</button>
                     </div>                
                 </form>
+                <br><br>
+                </div>
+                <div class=" d-flex justify-content-center">
+                    <br><br>
+                    <h2 class="text-center">
+                        Click this if you dare...
+                    </h2>
+                    <button type="button" id="button" class="btn btn-info">:)</button>
+                </div>
+                <div class=" d-flex justify-content-center">
+                    <img id = "hiddenPic" src="images/paulhehe.jpeg" style="visibility:hidden"/>
                 </div>
             </div>
         </div>
+
+        <script>
+            document.getElementById("button").addEventListener("click", function (){
+                var image = document.getElementById("hiddenPic");
+                if(image.style.visibility == "hidden"){
+                    image.style.visibility = "visible";
+                }
+                else{
+                    image.style.visibility="hidden";
+                }
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>
