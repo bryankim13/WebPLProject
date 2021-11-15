@@ -17,10 +17,11 @@ session_start();
         <meta name="author" content="Bryan Kim : bjk3yf, Paul Ok : pso3td">
         <meta name="description" content="Providing potential photoshoot locations to users">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="jquery.js"></script>
         <meta name="keywords" content="Photos, camera, location, suggestion, scenery">        
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/gallery.css">
-
     </head>  
     <body>
     <header>
@@ -61,21 +62,72 @@ session_start();
             </div>
         </div>
 
+        <div class="container">
+          <h2 class="center" style="text-align: center">Search for Location</h2>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Enter a location name">
+            </div>
+          </div>
+          <div id="result"></div>
+        </div>
+        
+        <script>
+          $(document).ready(function() {
+            $('#search_text').keyup(function() {
+              var txt = $(this).val();
+              if (txt != "") {
+                $.ajax({
+                  url:"getSearch.php",
+                  method:"post",
+                  data:{search:txt},
+                  dataType:"text",
+                  success:function(data)
+                  {
+                    $('#result').html(data);
+                  }
+                });
+              } else {
+                $('#result').html('');
+                $.ajax({
+                  url:"getSearch.php",
+                  method:"post",
+                  data:{search:txt},
+                  dataType:"text",
+                  success:function(data)
+                  {
+                    $('#result').html(data);
+                  }
+                });
+              }
+            });
+          });
+        </script>
         <div class="center">
         <!-- this section uses an array with the fetch all command that will return an array of the query
         we want and using it within a foreach loop -->
         <?php
         $stmt = $mysqli->query("select * from location;");
         $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
-        echo "<table><tr><td><center><b>Location Name</b></center></td><td><center><b>Address</b></center></td><td><center><b>In/Out</b></center></td><td><center><b>Time</b></center></td><td><center><b>Money</b></center></td><td><center><b>Activity</b></center></td></tr><br>";
+        echo "<table class='center'><tr><td><center><b>Location Name</b></center></td><td><center><b>Address</b></center></td><td><center><b>In/Out</b></center></td><td><center><b>Time</b></center></td><td><center><b>Money</b></center></td><td><center><b>Activity</b></center></td></tr><br>";
+        echo "<script type='text/javascript'>
+                var data_list = [];
+              </script>";
         foreach ($data_table as $row) {
+          echo "<script type='text/javascript'>
+                  var obj = JSON.stringify({ name: '" . $row['name'] . "', address: '" . $row['address'] . "', inout: '" . $row['indoor'] . "', time: '" . $row['time'] . "', money: '" . $row['money'] . "', activity: '" . $row['activity'] . "'});
+                  data_list.push(obj);
+                </script>";
           echo "<tr><td><center>" . $row['name'] . "</center></td><td><center>" . $row['address'] . "</center></td><td><center>" . $row['indoor'] . "</center></td><td><center>" . $row['time'] . "</center></td><td><center>" . $row['money'] . "</center></td><td><center>" . $row['activity'] . "</center></td></tr><br>";
         }
         echo "</table>";
+        echo "<script type='text/javascript'>
+                console.log(data_list);
+              </script>";
         ?>
         </div>
-
-        <div class="center">
+        <br>
+        <div class="center" style="text-align: center">
           <a href="json_maker.php" class="btn btn-primary">Get a Json File</a>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
