@@ -6,6 +6,7 @@ $mysqli = new mysqli($dbserver, $dbuser, $dbpass, $dbdatabase);
 $user = null;
 // Join session or start one
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +111,7 @@ session_start();
         <!-- this section uses an array with the fetch all command that will return an array of the query
         we want and using it within a foreach loop -->
         <?php
+        include('rand_query.php');
         $stmt = $mysqli->query("select * from location;");
         $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
         echo "<table class='center'><tr><td><center><b>Location Name</b></center></td><td><center><b>Address</b></center></td><td><center><b>In/Out</b></center></td><td><center><b>Time</b></center></td><td><center><b>Money</b></center></td><td><center><b>Activity</b></center></td></tr><br>";
@@ -144,25 +146,27 @@ session_start();
       ?>
 
       <script>
+        function get_rand() {
           $(document).ready(function() {
-            $('#rand_loc').click(function (){
+            // $('#rand_loc').click(function (){
               $.ajax({
                 url: 'rand_query.php',
-                type: 'post',
-                data: {placeData: obj2},
+                type: 'get',
+                data: {placeData: rand_obj},
                 success: function (data) {
-                  var name = JSON.parse(obj2);
-                  $('#places').append('Name: <b>' + name.name + '</b><br>Address: ' + name.address + '<br>In/Out: ' + name.inout + '<br>Time: ' + name.time + '<br>Money: ' + name.money + '<br>Activity: ' + name.activity + '<br>');
+                  var name = JSON.parse(rand_obj);
+                  $('#places').append('<p style="text-align: center">Name: <b>' + name.name + '</b><br>Address: ' + name.address + '<br>In/Out: ' + name.inout + '<br>Time: ' + name.time + '<br>Money: ' + name.money + '<br>Activity: ' + name.activity + '</p><br>');
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                   $('#places').append('Error: ' + errorMessage);
                 }
-              });
+              // });
             });
           });
+        }
         </script>
       <h2 style='text-align: center'>Want a random location?</h2>
-      <div style='text-align: center'><input type='button' id='rand_loc' value="Ajax Request"/></div>
+      <div style='text-align: center'><input type='submit' onclick='get_rand()' value="Get Random Location"/></div>
       <p id='places' style='text-align: center'></p>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
