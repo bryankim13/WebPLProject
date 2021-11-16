@@ -78,7 +78,7 @@ session_start();
         </header>
         
         <!-- use of a jumbotron for our main header for our home page to grab the user's attention -->
-        <div class=" jumbo rounded-3 mx-auto m-3 jumbotron jumbotron-fluid light-yellow border">
+        <div class=" jumbo rounded-3 mx-auto m-3 jumbotron jumbotron-fluid border" id="mainbanner">
             <div class="container">
               <h1 class="display-4 text-center">KaClik!</h1>
               <?php
@@ -249,6 +249,32 @@ session_start();
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById("mainbanner").addEventListener("click", function (){
+                var image = document.getElementById("mainbanner");
+                console.log(image.style.backgroundColor);
+
+                if(image.style.backgroundColor == "rgb(148, 240, 216)"){
+                  console.log("this fefesfe");
+
+                    image.style.backgroundColor = "rgb(148, 166, 240)";
+                    console.log(image.style.backgroundColor);
+                }
+                else if(image.style.backgroundColor==""){
+                  console.log("this ieeee");
+                                    console.log(image.style.backgroundColor);
+                  image.style.backgroundColor="rgb(148, 166, 240)";
+                  console.log(image.style.backgroundColor);
+
+                }
+                else{
+                  console.log("this is");
+                  image.style.backgroundColor = "rgb(148, 240, 216)";
+                  console.log(image.style.backgroundColor);
+
+                }
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>

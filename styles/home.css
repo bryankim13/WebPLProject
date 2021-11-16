@@ -15,6 +15,7 @@ body{
 .jumbo{
     width:80vw;
     height:13vh;
+    background-color: #94f0d8;
 }
 
 @media only screen and (max-width: 768px) {
