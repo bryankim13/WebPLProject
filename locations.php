@@ -18,7 +18,7 @@ session_start();
         <meta name="description" content="Providing potential photoshoot locations to users">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <meta name="keywords" content="Photos, camera, location, suggestion, scenery">        
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/gallery.css">
@@ -103,7 +103,10 @@ session_start();
             });
           });
         </script>
+
+        
         <div class="center">
+        
         <!-- this section uses an array with the fetch all command that will return an array of the query
         we want and using it within a foreach loop -->
         <?php
@@ -121,15 +124,46 @@ session_start();
           echo "<tr><td><center>" . $row['name'] . "</center></td><td><center>" . $row['address'] . "</center></td><td><center>" . $row['indoor'] . "</center></td><td><center>" . $row['time'] . "</center></td><td><center>" . $row['money'] . "</center></td><td><center>" . $row['activity'] . "</center></td></tr><br>";
         }
         echo "</table>";
-        echo "<script type='text/javascript'>
-                console.log(data_list);
-              </script>";
         ?>
         </div>
         <br>
         <div class="center" style="text-align: center">
           <a href="json_maker.php" class="btn btn-primary">Get a Json File</a>
       </div>
+      <div class="center">
+      
+      <?php
+        $rand_stmt = $mysqli->query("select * from location order by rand() limit 1");
+        $rand_entry = mysqli_fetch_all($rand_stmt, MYSQLI_ASSOC);
+        foreach ($rand_entry as $display) {
+          echo"<script type='text/javascript'>
+                var obj2 = JSON.stringify({ name: '" . $display['name'] . "', address: '" . $display['address'] . "', inout: '" . $display['indoor'] . "', time: '" . $display['time'] . "', money: '" . $display['money'] . "', activity: '" . $display['activity'] . "'});
+              </script>"; 
+          echo var_dump($display['name']);
+        }
+      ?>
+
+      <script>
+          $(document).ready(function() {
+            $('#rand_loc').click(function (){
+              $.ajax({
+                url: 'rand_query.php',
+                type: 'post',
+                data: {placeData: obj2},
+                success: function (data) {
+                  var name = JSON.parse(obj2);
+                  $('#places').append('Name: <b>' + name.name + '</b><br>Address: ' + name.address + '<br>In/Out: ' + name.inout + '<br>Time: ' + name.time + '<br>Money: ' + name.money + '<br>Activity: ' + name.activity + '<br>');
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                  $('#places').append('Error: ' + errorMessage);
+                }
+              });
+            });
+          });
+        </script>
+      <h2 style='text-align: center'>Want a random location?</h2>
+      <div style='text-align: center'><input type='button' id='rand_loc' value="Ajax Request"/></div>
+      <p id='places' style='text-align: center'></p>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

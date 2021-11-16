@@ -25,6 +25,7 @@ session_start();
       https://www.cloudways.com/blog/live-search-php-mysql-ajax/
       https://www.w3schools.com/jquery/ajax_ajax.asp
       https://api.jquery.com/jquery.ajax/
+      https://www.tutorialspoint.com/json/json_ajax_example.htm
     -->
     <!DOCTYPE html>
 <html lang="en">
