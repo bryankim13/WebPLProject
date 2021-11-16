@@ -121,11 +121,14 @@ session_start();
         foreach ($data_table as $row) {
           echo "<script type='text/javascript'>
                   var obj = JSON.stringify({ name: '" . $row['name'] . "', address: '" . $row['address'] . "', inout: '" . $row['indoor'] . "', time: '" . $row['time'] . "', money: '" . $row['money'] . "', activity: '" . $row['activity'] . "'});
-                  data_list.push(obj);
+                  var par_obj = JSON.parse(obj);
+                  data_list.push(par_obj);
                 </script>";
           echo "<tr><td><center>" . $row['name'] . "</center></td><td><center>" . $row['address'] . "</center></td><td><center>" . $row['indoor'] . "</center></td><td><center>" . $row['time'] . "</center></td><td><center>" . $row['money'] . "</center></td><td><center>" . $row['activity'] . "</center></td></tr><br>";
+          
         }
         echo "</table>";
+        echo "<script type='text/javascript'>console.log(data_list)</script>";
         ?>
         </div>
         <br>
@@ -141,27 +144,32 @@ session_start();
           echo"<script type='text/javascript'>
                 var obj2 = JSON.stringify({ name: '" . $display['name'] . "', address: '" . $display['address'] . "', inout: '" . $display['indoor'] . "', time: '" . $display['time'] . "', money: '" . $display['money'] . "', activity: '" . $display['activity'] . "'});
               </script>"; 
-          echo var_dump($display['name']);
+          // echo var_dump($display['name']);
         }
       ?>
 
       <script>
         function get_rand() {
+          var rand_val = Math.floor(Math.random() * data_list.length);
+          console.log(rand_val);
+          var rand_data = data_list[rand_val];
+          console.log(rand_data);
+          var par_data = JSON.stringify(rand_data);
           $(document).ready(function() {
-            // $('#rand_loc').click(function (){
+            // $('#rand_loc').on('click', (function (){
               $.ajax({
-                url: 'rand_query.php',
-                type: 'get',
-                data: {placeData: rand_obj},
+                type: 'post',
+                data: {myObj: par_data},
                 success: function (data) {
-                  var name = JSON.parse(rand_obj);
-                  $('#places').append('<p style="text-align: center">Name: <b>' + name.name + '</b><br>Address: ' + name.address + '<br>In/Out: ' + name.inout + '<br>Time: ' + name.time + '<br>Money: ' + name.money + '<br>Activity: ' + name.activity + '</p><br>');
+                  console.log(par_data);
+                  var name = JSON.parse(par_data);
+                  $('#places').replaceWith('<p id="places" style="text-align: center">Name: <b>' + name.name + '</b><br>Address: ' + name.address + '<br>In/Out: ' + name.inout + '<br>Time: ' + name.time + '<br>Money: ' + name.money + '<br>Activity: ' + name.activity + '</p><br>');
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                   $('#places').append('Error: ' + errorMessage);
                 }
-              // });
-            });
+              });
+            // });
           });
         }
         </script>
