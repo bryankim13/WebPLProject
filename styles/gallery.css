@@ -1,0 +1,13 @@
+body{
+    background-color:#f9f7f1;
+}
+.jumbo{
+    width:80vw;
+    height:18vh;
+    background-color:rgb(249, 223, 223);
+}
+.carousel-item{
+    height: auto;
+
+    background : #777;
+}
