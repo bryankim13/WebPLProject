@@ -26,6 +26,8 @@ session_start();
       https://www.w3schools.com/jquery/ajax_ajax.asp
       https://api.jquery.com/jquery.ajax/
       https://www.tutorialspoint.com/json/json_ajax_example.htm
+      https://blog.angular-university.io/angular-ngclass-ngstyle/
+      https://www.telerik.com/blogs/how-to-use-ngif-else-angular-applications
     -->
     <!DOCTYPE html>
 <html lang="en">
