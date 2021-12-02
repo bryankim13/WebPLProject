@@ -14,7 +14,7 @@ export class WishlistComponent implements OnInit {
   brandNames: Array<string> = ["Sony","Nikon","Fujifilm","Canon","Panasonic","GoPro"];
   wishes: Array<Camera> = [];
   constructor( private http:HttpClient ) { 
-    this.camera = new Camera("", "", "",0);
+    this.camera = new Camera("", "", "",0,"");
     this.confirmationMsg = "";
   }
 
@@ -22,7 +22,7 @@ export class WishlistComponent implements OnInit {
     this.confirmationMsg = "Added to your Wishlist!";
   }
   submitForm(data:any): void{
-    let cam = new Camera(data.brand,data.model,data.lens,data.megapix);
+    let cam = new Camera(data.brand,data.model,data.lens,data.megapix,data.description);
     this.wishes.push(cam);
   }
   response:any;

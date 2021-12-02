@@ -38,6 +38,15 @@ Your Camera Wishlist
         type = "number" class = "form-control" name = "megapix" placeholder = "How much is enough?"/>
     </div>
     <div class="mb-3">
+        <label for = "description" class = "form-label">Description</label>
+        <input [(ngModel)]="camera.description"
+        required
+        #description="ngModel"
+        minlength="2" maxlength="400"
+        [class.is-invalid]="description.invalid && description.touched"
+        type = "text" class = "form-control" name = "description" placeholder = "What is it used for?"/>
+    </div>
+    <div class="mb-3">
         <button class="btn btn-primary" 
         [disabled]="!wishlistForm.form.valid"
         (click)="addWish()">Add Wish</button>
@@ -53,7 +62,7 @@ Your Camera Wishlist
             <th>Model</th>
             <th>Lens</th>
             <th>MegaPixel</th>
-
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
@@ -62,6 +71,7 @@ Your Camera Wishlist
             <td>{{wish.model}}</td>
             <td>{{wish.lens}}</td>
             <td>{{wish.megaPix}}</td>
+            <th>{{wish.description}}</th>
         </tr>
     </tbody>
 </table>
