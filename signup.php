@@ -73,6 +73,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
                   <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class='nav-item nav-link active' href='camera.php'>Camera Builds</a>
                   <?php
                     if (isset($_SESSION["email"])) {
                         echo "<a class='nav-item nav-link active' href='suggestions.php'>Suggestions</a>";
@@ -82,6 +83,7 @@ if (isset($_POST["email"])) { /// validate the email coming in
 
                     }
                     else{
+                        echo "<a class='nav-item nav-link active' href='angComp'>Make a Build</a>";
                         echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
                         echo "<a class='nav-item nav-link active' href='signup.php'>Sign Up</a>";
                     }

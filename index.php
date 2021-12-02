@@ -44,13 +44,12 @@ session_start();
     </head>  
     <body>
     <header>
-      <!-- Link to index.php https://cs4640.cs.virginia.edu/bjk3yf/project/ -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light border">
               <a class="navbar-brand px-3 mx-auto" href="index.php">KaClik!</a>
               <?php
-                if (isset($_SESSION["email"])) {
-                  echo "<a class=\"navbar-brand px-3 mx-auto\" href=\"upload.php\">Upload</a>";
-                }
+              if (isset($_SESSION["email"])) {
+                echo "<a class=\"navbar-brand px-3 mx-auto\" href=\"upload.php\">Upload</a>";
+              }
               ?>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -58,9 +57,10 @@ session_start();
               <div class="collapse navbar-collapse justify-content-between"  id="navbarNavAltMarkup">
                 <div class="navbar-nav mx-auto">
                   <a class="nav-item nav-link active" href="gallery.php">Gallery</a>
+                  <a class="nav-item nav-link active" href="locations.php">Locations</a>
+                  <a class='nav-item nav-link active' href='camera.php'>Camera Builds</a>
                   <?php
                     if (isset($_SESSION["email"])) {
-                        echo "<a class='nav-item nav-link active' href='locations.php'>Locations</a>";
                         echo "<a class='nav-item nav-link active' href='suggestions.php'>Suggestions</a>";
                         echo "<a class='nav-item nav-link active' href='updatePreference.php'>Update Preference</a>";
                         echo "<a class='nav-item nav-link active' href='profile.php'>Profile</a>";
@@ -68,6 +68,7 @@ session_start();
 
                     }
                     else{
+                        echo "<a class='nav-item nav-link active' href='angComp'>Make a Build</a>";
                         echo "<a class='nav-item nav-link active' href='login.php'>Log In</a>";
                         echo "<a class='nav-item nav-link active' href='signup.php'>Sign Up</a>";
                     }
