@@ -1,4 +1,3 @@
-
 export class Camera {
     constructor(
         public brand: string,
