@@ -6,8 +6,10 @@
     </div>
     <button [ngClass]="['btn', tog_control === false ? 'btn-primary' : 'btn-danger']" (click)="tog_control = !tog_control">Show More/Less</button>
 </div>
-<p>Camera Brand {{camera.brand}}</p>
-<p>Camera Model : {{camera|json}}</p>
+<h1>
+Your Camera Wishlist
+</h1>
+<p>"Your Current Wish is to have a {{camera.brand}} {{camera.model}} with a {{camera.lens}} to make use of the {{camera.megaPix}} Megapixels!"</p>
 <form #wishlistForm="ngForm" (ngSubmit) = "submitForm(wishlistForm.value)">
     <div class="mb-3">
         <label for = "brand" class = "form-label">Camera Brand</label>
@@ -39,16 +41,60 @@
         <input [(ngModel)]="camera.megaPix"
         required
         #megapix="ngModel"
-        minlength="2" maxlength="100"
+        min="1" max="100"
         [class.is-invalid]="megapix.invalid && megapix.touched"
         type = "number" class = "form-control" name = "megapix" placeholder = "How much is enough?"/>
+<<<<<<< HEAD
+=======
+    </div>
+    <div class="mb-3">
+        <label for = "description" class = "form-label">Description</label>
+        <input [(ngModel)]="camera.description"
+        required
+        #description="ngModel"
+        minlength="2" maxlength="400"
+        [class.is-invalid]="description.invalid && description.touched"
+        type = "text" class = "form-control" name = "description" placeholder = "What is it used for?"/>
+>>>>>>> c2085eec053f5528860eeb87709dcd8136f3e9a5
     </div>
     <div class="mb-3">
         <button class="btn btn-primary" 
         [disabled]="!wishlistForm.form.valid"
-        (click)="addWish()">Add to Wishlist</button>
+        (click)="addWish()">Add Wish</button>
     </div>
 </form>
 <p>{{wishlistForm.value.brand}}</p>
 
 <p>{{confirmationMsg}}</p>
+<<<<<<< HEAD
+=======
+<p>{{wishlistForm.value|json}}</p>
+<h1>Your Wishes</h1>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Lens</th>
+            <th>MegaPixel</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let wish of wishes">
+            <td>{{wish.brand}}</td>
+            <td>{{wish.model}}</td>
+            <td>{{wish.lens}}</td>
+            <td>{{wish.megaPix}}</td>
+            <th>{{wish.description}}</th>
+        </tr>
+    </tbody>
+</table>
+
+<div class="mb-3">
+    <button class="btn btn-primary" 
+    [disabled]="wishes.length==0"
+    (click)="sendWishes()">Send to Santa</button>
+</div>
+<p>phpRESPONSE: {{response}}</p>
+>>>>>>> c2085eec053f5528860eeb87709dcd8136f3e9a5

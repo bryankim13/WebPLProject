@@ -4,5 +4,6 @@ export class Camera {
         public model: string,
         public lens: string,
         public megaPix: number,
+        public description: string,
     ){}
 }
