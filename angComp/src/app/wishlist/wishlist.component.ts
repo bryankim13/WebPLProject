@@ -13,6 +13,10 @@ export class WishlistComponent implements OnInit {
     this.camera = new Camera("Sony", "A7", "22mm",25);
   }
 
+  alert(): void {
+    alert("Your entry has been successfully submitted!");
+  }
+
   ngOnInit(): void {
   }
 
