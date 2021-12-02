@@ -19,9 +19,11 @@ $output = [
     "request" => $data
 ];
 $wishes = [];
-
 foreach ($data as $wish) {
-    array_push($wishes, "{$wish['model']} for {$wish['brand']}");
+    $insert = $mysqli->prepare("insert into build (brand, model,lens,megaPix,description) values (?, ?, ?, ?, ?);");
+    $insert->bind_param("sssis", $wish["brand"], $wish["model"], $wish["lens"],$wish["megaPix"],$wish["description"]); 
+    $insert->execute();
+    array_push($wishes, "This is a {$wish["brand"]} {$wish["model"]} which is good for {$wish["description"]}");
 }
 
 $output["wishes"] = $wishes;
