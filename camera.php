@@ -54,7 +54,7 @@ session_start();
         </header>
 
         <?php
-            $stmt = $mysqli->query("select * from build")
+            $stmt = $mysqli->query("select * from build");
             $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
             foreach ($data_table as $row);
             echo "<table class='center'><tr><td><center><b>Brand</b></td></td><td><center><b>Model</b></center></td><td><center><b>Lens</b></center></td><td><center><b>Megapixels</b></center></td><td><center><b>Description</b></center></td><tr></table>";
