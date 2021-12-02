@@ -1,1 +1,8 @@
 <p>Camera Brand {{camera.brand}}</p>
+<form #wishlistForm="ngForm">
+    <div class="mb-3">
+        <label for = "brand" class = "form-label">Camera Brand</label>
+        <input ngModel type = "text" class = "form-control" name = "brand" placeholder = "Sony, Nikon, Canon..."/>
+    </div>
+</form>
+<p>{{wishlistForm.value.brand}}</p>
