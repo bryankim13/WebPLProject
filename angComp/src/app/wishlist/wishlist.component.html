@@ -7,9 +7,9 @@
     <button [ngClass]="['btn', tog_control === false ? 'btn-primary' : 'btn-danger']" (click)="tog_control = !tog_control">Show More/Less</button>
 </div>
 <h1>
-Your Camera Wishlist
+Your Camera Build
 </h1>
-<p>"Your Current Wish is to have a {{camera.brand}} {{camera.model}} with a {{camera.lens}} to make use of the {{camera.megaPix}} Megapixels!"</p>
+<p>"Your Current Build has a {{camera.brand}} {{camera.model}} with a {{camera.lens}} to make use of the {{camera.megaPix}} Megapixels!"</p>
 <form #wishlistForm="ngForm" (ngSubmit) = "submitForm(wishlistForm.value)">
     <div class="mb-3">
         <label for = "brand" class = "form-label">Camera Brand</label>
@@ -60,11 +60,8 @@ Your Camera Wishlist
         (click)="addWish()">Add Wish</button>
     </div>
 </form>
-<p>{{wishlistForm.value.brand}}</p>
-
 <p>{{confirmationMsg}}</p>
-<p>{{wishlistForm.value|json}}</p>
-<h1>Your Wishes</h1>
+<h1>Your Builds</h1>
 <table class = "table">
     <thead>
         <tr>
@@ -89,6 +86,6 @@ Your Camera Wishlist
 <div class="mb-3">
     <button class="btn btn-primary" 
     [disabled]="wishes.length==0"
-    (click)="sendWishes()">Send to Santa</button>
+    (click)="sendWishes()">Show It Off</button>
 </div>
-<p>phpRESPONSE: {{response}}</p>
+<p>phpRESPONSE: {{response | json}}</p>
