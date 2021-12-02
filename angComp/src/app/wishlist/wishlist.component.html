@@ -44,8 +44,6 @@ Your Camera Wishlist
         min="1" max="100"
         [class.is-invalid]="megapix.invalid && megapix.touched"
         type = "number" class = "form-control" name = "megapix" placeholder = "How much is enough?"/>
-<<<<<<< HEAD
-=======
     </div>
     <div class="mb-3">
         <label for = "description" class = "form-label">Description</label>
@@ -55,7 +53,6 @@ Your Camera Wishlist
         minlength="2" maxlength="400"
         [class.is-invalid]="description.invalid && description.touched"
         type = "text" class = "form-control" name = "description" placeholder = "What is it used for?"/>
->>>>>>> c2085eec053f5528860eeb87709dcd8136f3e9a5
     </div>
     <div class="mb-3">
         <button class="btn btn-primary" 
@@ -66,8 +63,6 @@ Your Camera Wishlist
 <p>{{wishlistForm.value.brand}}</p>
 
 <p>{{confirmationMsg}}</p>
-<<<<<<< HEAD
-=======
 <p>{{wishlistForm.value|json}}</p>
 <h1>Your Wishes</h1>
 <table class = "table">
@@ -97,4 +92,3 @@ Your Camera Wishlist
     (click)="sendWishes()">Send to Santa</button>
 </div>
 <p>phpRESPONSE: {{response}}</p>
->>>>>>> c2085eec053f5528860eeb87709dcd8136f3e9a5
