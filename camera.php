@@ -53,10 +53,18 @@ session_start();
             </nav> 
         </header>
 
+        <div class=" jumbo rounded-3 mx-auto m-3 jumbotron jumbotron-fluid border" style="background-color: lightblue" id="mainbanner">
+            <div class="container">
+              <h1 class="display-4 text-center">Camera Builds</h1>
+              <p style="text-align: center">Come see all the different camera builds other users have to start saving for your next camera!</p>
+            </div>
+        </div>
+        <br>
+        <br>
         <?php
             $stmt = $mysqli->query("select * from build");
             $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
-            echo "<table class='center'><tr><td><center><b>Brand</b></td></td><td><center><b>Model</b></center></td><td><center><b>Lens</b></center></td><td><center><b>Megapixels</b></center></td><td><center><b>Description</b></center></td><tr>";
+            echo "<table class='table table-warning table-hover'><tr><td><center><b>Brand</b></td></td><td><center><b>Model</b></center></td><td><center><b>Lens</b></center></td><td><center><b>Megapixels</b></center></td><td><center><b>Description</b></center></td><tr>";
             foreach ($data_table as $row) {
             echo "<tr><td><center>" . $row['brand'] . "</center></td><td><center>" . $row['model'] . "</center></td><td><center>" . $row['lens'] . "</center></td><td><center>" . $row['megaPix'] . "</center></td><td><center>" . $row['description'] . "</center></td></tr>";
             }
