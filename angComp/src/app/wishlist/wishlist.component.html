@@ -1,8 +1,45 @@
 <p>Camera Brand {{camera.brand}}</p>
-<form #wishlistForm="ngForm">
+<p>Camera Model : {{camera|json}}</p>
+<form #wishlistForm="ngForm" (ngSubmit) = "submitForm(wishlistForm.value)">
     <div class="mb-3">
         <label for = "brand" class = "form-label">Camera Brand</label>
-        <input ngModel type = "text" class = "form-control" name = "brand" placeholder = "Sony, Nikon, Canon..."/>
+        <select [(ngModel)]="camera.brand" class = "form-select" name = "brand">
+            <option selected>Select a Brand</option>
+            <option *ngFor="let brands of brandNames"> {{brands}}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for = "model" class = "form-label">Camera Model</label>
+        <input [(ngModel)]="camera.model"
+        required
+        #model="ngModel"
+        minlength="2" maxlength="100"
+        [class.is-invalid]="model.invalid && model.touched"
+        type = "text" class = "form-control" name = "model" placeholder = "Model"/>
+    </div>
+    <div class="mb-3">
+        <label for = "lens" class = "form-label">Lens</label>
+        <input [(ngModel)]="camera.lens"
+        required
+        #lens="ngModel"
+        minlength="2" maxlength="100"
+        [class.is-invalid]="lens.invalid && lens.touched"
+        type = "text" class = "form-control" name = "lens" placeholder = "Lens"/>
+    </div>
+    <div class="mb-3">
+        <label for = "megapix" class = "form-label">MegaPixel</label>
+        <input [(ngModel)]="camera.megaPix"
+        required
+        #megapix="ngModel"
+        minlength="2" maxlength="100"
+        [class.is-invalid]="megapix.invalid && megapix.touched"
+        type = "text" class = "form-control" name = "megapix" placeholder = "How much is enough?"/>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary" 
+        [disabled]="!wishlistForm.form.valid"
+        (click)="addWish()">Add to Wishlist</button>
     </div>
 </form>
+<p>{{confirmationMsg}}</p>
 <p>{{wishlistForm.value.brand}}</p>
