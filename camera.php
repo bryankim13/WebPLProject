@@ -56,7 +56,7 @@ session_start();
         <?php
             $stmt = $mysqli->query("select * from build");
             $data_table = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
-            echo "<table class='center'><tr><td><center><b>Brand</b></td></td><td><center><b>Model</b></center></td><td><center><b>Lens</b></center></td><td><center><b>Megapixels</b></center></td><td><center><b>Description</b></center></td><tr></table>";
+            echo "<table class='center'><tr><td><center><b>Brand</b></td></td><td><center><b>Model</b></center></td><td><center><b>Lens</b></center></td><td><center><b>Megapixels</b></center></td><td><center><b>Description</b></center></td><tr>";
             foreach ($data_table as $row) {
             echo "<tr><td><center>" . $row['brand'] . "</center></td><td><center>" . $row['model'] . "</center></td><td><center>" . $row['lens'] . "</center></td><td><center>" . $row['megaPix'] . "</center></td><td><center>" . $row['description'] . "</center></td></tr>";
             }
